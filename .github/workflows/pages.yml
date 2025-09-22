@@ -41,15 +41,12 @@ jobs:
           sudo mv hugo /usr/local/bin/hugo
           hugo version
 
-      - name: Build blog
+      - name: Build blog into docs/blog
         working-directory: ./blog
         run: |
-          # Change baseURL if using a custom domain (e.g., https://example.com/blog/)
           BASE_URL="https://$GITHUB_REPOSITORY_OWNER.github.io/${GITHUB_REPOSITORY#*/}/blog/"
-          if [ -n "${CUSTOM_DOMAIN}" ]; then
-            BASE_URL="https://${CUSTOM_DOMAIN}/blog/"
-          fi
-          hugo --minify --baseURL "$BASE_URL" --destination ../_blog_build
+          [ -n "${CUSTOM_DOMAIN}" ] && BASE_URL="https://${CUSTOM_DOMAIN}/blog/"
+          hugo --minify --baseURL "$BASE_URL" --destination ../docs/blog
 
       # ----- Assemble final site to _site/ -----
       - name: Prepare _site with portfolio HTML
@@ -78,7 +75,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: _site
+          path: ./docs
 
   deploy:
     runs-on: ubuntu-latest
