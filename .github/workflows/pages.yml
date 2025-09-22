@@ -24,11 +24,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout (with submodules)
+      # .github/workflows/pages.yml
+      - name: Checkout (with private submodule)
         uses: actions/checkout@v4
         with:
-          submodules: true
+          submodules: recursive
           fetch-depth: 0
+          token: ${{ secrets.GH_SUBMODULE_BLOG_TOKEN }} # allows pulling the private submodule
 
       # ----- Build the Hugo blog -----
       - name: Install Hugo (extended)
