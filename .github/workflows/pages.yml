@@ -1,4 +1,3 @@
-# .github/workflows/pages.yml
 name: Build & Deploy Portfolio + Blog to GitHub Pages
 
 on:
@@ -16,23 +15,19 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  # Set to your domain if you have one, e.g., example.com
-  # Leave blank or remove this env if you don't use a custom domain.
-  CUSTOM_DOMAIN: ""
+  CUSTOM_DOMAIN: "" # leave empty unless you set a domain in DNS + Pages
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # .github/workflows/pages.yml
-      - name: Checkout (with private submodule)
+      - name: Checkout (with submodules)
         uses: actions/checkout@v4
         with:
-          submodules: recursive
+          submodules: true
           fetch-depth: 0
-          token: ${{ secrets.GH_SUBMODULE_BLOG_TOKEN }} # allows pulling the private submodule
 
-      # ----- Build the Hugo blog -----
+      # Build Hugo blog directly into docs/blog
       - name: Install Hugo (extended)
         run: |
           HUGO_VER=0.134.2
@@ -46,42 +41,23 @@ jobs:
         run: |
           BASE_URL="https://$GITHUB_REPOSITORY_OWNER.github.io/${GITHUB_REPOSITORY#*/}/blog/"
           [ -n "${CUSTOM_DOMAIN}" ] && BASE_URL="https://${CUSTOM_DOMAIN}/blog/"
+          mkdir -p ../docs/blog
           hugo --minify --baseURL "$BASE_URL" --destination ../docs/blog
 
-      # ----- Assemble final site to _site/ -----
-      - name: Prepare _site with portfolio HTML
-        run: |
-          mkdir -p _site
-          # Copy everything except git/ci/blog folders into _site
-          rsync -a \
-            --exclude '.git' \
-            --exclude '.github' \
-            --exclude 'blog' \
-            --exclude '_blog_build' \
-            --exclude '_site' \
-            . _site/
-
-      - name: Place blog under /blog
-        run: |
-          mkdir -p _site/blog
-          rsync -a --delete _blog_build/ _site/blog/
-
-      - name: Optional - write CNAME for custom domain
+      # (Optional) write CNAME for a custom domain
+      - name: Write CNAME
         if: env.CUSTOM_DOMAIN != ''
-        run: |
-          echo "${CUSTOM_DOMAIN}" > _site/CNAME
+        run: echo "${CUSTOM_DOMAIN}" > docs/CNAME
 
-      # ----- Upload & Deploy -----
-      - name: Upload artifact
+      - name: Upload artifact (docs/)
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./docs
 
   deploy:
-    runs-on: ubuntu-latest
     needs: build
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
     steps:
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
+      - uses: actions/deploy-pages@v4
