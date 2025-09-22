@@ -1,0 +1,36 @@
+docs/blog/
+########################
+# Hugo blog artifacts
+########################
+blog/public/
+blog/resources/
+blog/hugo_stats.json
+_blog_build/
+
+########################
+# Logs
+########################
+*.log
+logs/
+
+########################
+# Environment
+########################
+.env
+.env.*.local
+
+########################
+# Editor / IDE
+########################
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+########################
+# OS files
+########################
+.DS_Store
+Thumbs.db

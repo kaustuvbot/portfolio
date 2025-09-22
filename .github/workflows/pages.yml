@@ -1,0 +1,88 @@
+# .github/workflows/pages.yml
+name: Build & Deploy Portfolio + Blog to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+env:
+  # Set to your domain if you have one, e.g., example.com
+  # Leave blank or remove this env if you don't use a custom domain.
+  CUSTOM_DOMAIN: ""
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (with submodules)
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          fetch-depth: 0
+
+      # ----- Build the Hugo blog -----
+      - name: Install Hugo (extended)
+        run: |
+          HUGO_VER=0.134.2
+          wget -qO- https://github.com/gohugoio/hugo/releases/download/v${HUGO_VER}/hugo_extended_${HUGO_VER}_Linux-64bit.tar.gz \
+          | tar -xz hugo
+          sudo mv hugo /usr/local/bin/hugo
+          hugo version
+
+      - name: Build blog
+        working-directory: ./blog
+        run: |
+          # Change baseURL if using a custom domain (e.g., https://example.com/blog/)
+          BASE_URL="https://$GITHUB_REPOSITORY_OWNER.github.io/${GITHUB_REPOSITORY#*/}/blog/"
+          if [ -n "${CUSTOM_DOMAIN}" ]; then
+            BASE_URL="https://${CUSTOM_DOMAIN}/blog/"
+          fi
+          hugo --minify --baseURL "$BASE_URL" --destination ../_blog_build
+
+      # ----- Assemble final site to _site/ -----
+      - name: Prepare _site with portfolio HTML
+        run: |
+          mkdir -p _site
+          # Copy everything except git/ci/blog folders into _site
+          rsync -a \
+            --exclude '.git' \
+            --exclude '.github' \
+            --exclude 'blog' \
+            --exclude '_blog_build' \
+            --exclude '_site' \
+            . _site/
+
+      - name: Place blog under /blog
+        run: |
+          mkdir -p _site/blog
+          rsync -a --delete _blog_build/ _site/blog/
+
+      - name: Optional - write CNAME for custom domain
+        if: env.CUSTOM_DOMAIN != ''
+        run: |
+          echo "${CUSTOM_DOMAIN}" > _site/CNAME
+
+      # ----- Upload & Deploy -----
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: github-pages
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
