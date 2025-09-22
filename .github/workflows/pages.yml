@@ -1,4 +1,4 @@
-name: Build & Deploy Portfolio + Blog to GitHub Pages
+name: Build docs (Portfolio + Blog)
 
 on:
   push:
@@ -7,15 +7,6 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
-env:
-  CUSTOM_DOMAIN: "" # leave empty unless you set a domain in DNS + Pages
 
 jobs:
   build:
@@ -27,14 +18,12 @@ jobs:
           submodules: true
           fetch-depth: 0
 
-      # Build Hugo blog directly into docs/blog
       - name: Install Hugo (extended)
         run: |
           HUGO_VER=0.134.2
           wget -qO- https://github.com/gohugoio/hugo/releases/download/v${HUGO_VER}/hugo_extended_${HUGO_VER}_Linux-64bit.tar.gz \
           | tar -xz hugo
           sudo mv hugo /usr/local/bin/hugo
-          hugo version
 
       - name: Build blog into docs/blog
         working-directory: ./blog
@@ -43,21 +32,3 @@ jobs:
           [ -n "${CUSTOM_DOMAIN}" ] && BASE_URL="https://${CUSTOM_DOMAIN}/blog/"
           mkdir -p ../docs/blog
           hugo --minify --baseURL "$BASE_URL" --destination ../docs/blog
-
-      # (Optional) write CNAME for a custom domain
-      - name: Write CNAME
-        if: env.CUSTOM_DOMAIN != ''
-        run: echo "${CUSTOM_DOMAIN}" > docs/CNAME
-
-      - name: Upload artifact (docs/)
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./docs
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-    steps:
-      - uses: actions/deploy-pages@v4
