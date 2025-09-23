@@ -1,4 +1,4 @@
-name: Build docs (Portfolio + Blog)
+name: Build & Deploy Portfolio + Blog
 
 on:
   push:
@@ -7,9 +7,12 @@ on:
 
 permissions:
   contents: read
+  pages: write # required
+  id-token: write # required
 
-env:
-  CUSTOM_DOMAIN: "" # set if you use a custom domain
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -18,19 +21,9 @@ jobs:
       - name: Checkout (with private submodules)
         uses: actions/checkout@v4
         with:
-          # Use your PAT with repo read access to BOTH repos
           token: ${{ secrets.GH_SUBMODULE_BLOG_TOKEN }}
           submodules: recursive
           fetch-depth: 0
-          persist-credentials: true
-
-      # (Optional harden) ensure any future submodule fetches use the token too
-      - name: Configure Git for private submodules
-        shell: bash
-        env:
-          GH_TOKEN: ${{ secrets.GH_SUBMODULE_BLOG_TOKEN }}
-        run: |
-          git config --global url."https://${GH_TOKEN}:x-oauth-basic@github.com/".insteadOf "https://github.com/"
 
       - name: Install Hugo (extended)
         run: |
@@ -39,14 +32,25 @@ jobs:
           | tar -xz hugo
           sudo mv hugo /usr/local/bin/hugo
 
-      - name: Build blog into docs/blog
-        working-directory: ./blogs
-        env:
-          GITHUB_REPOSITORY: ${{ github.repository }}
-          GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
-          CUSTOM_DOMAIN: ${{ env.CUSTOM_DOMAIN }}
+      - name: Build site
         run: |
-          BASE_URL="https://${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY#*/}/blog/"
-          [ -n "${CUSTOM_DOMAIN}" ] && BASE_URL="https://${CUSTOM_DOMAIN}/blog/"
-          mkdir -p ../docs/blog
-          hugo --minify --baseURL "$BASE_URL" --destination ../docs/blog
+          mkdir -p public/blog
+          (cd blogs && hugo --minify --destination ../public/blog)
+          echo "kaustuvprajapati.com.np" > public/CNAME
+          touch public/.nojekyll
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
