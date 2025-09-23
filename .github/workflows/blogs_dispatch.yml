@@ -1,0 +1,32 @@
+# .github/workflows/redeploy.yml
+name: Redeploy on Blog Update
+
+on:
+  repository_dispatch:
+    types: [blog-updated]
+
+jobs:
+  redeploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Pull latest blog submodule
+        run: |
+          git submodule update --remote blogs
+          git add blogs
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Auto-update blog submodule" || echo "No changes"
+          git push
+
+      - name: Trigger main deploy workflow
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          event-type: deploy
