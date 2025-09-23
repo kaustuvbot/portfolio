@@ -8,27 +8,45 @@ on:
 permissions:
   contents: read
 
+env:
+  CUSTOM_DOMAIN: "" # set if you use a custom domain
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout (with submodules)
+      - name: Checkout (with private submodules)
         uses: actions/checkout@v4
         with:
-          submodules: true
+          # Use your PAT with repo read access to BOTH repos
+          token: ${{ secrets.GH_SUBMODULE_BLOG_TOKEN }}
+          submodules: recursive
           fetch-depth: 0
+          persist-credentials: true
+
+      # (Optional harden) ensure any future submodule fetches use the token too
+      - name: Configure Git for private submodules
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GH_SUBMODULE_BLOG_TOKEN }}
+        run: |
+          git config --global url."https://${GH_TOKEN}:x-oauth-basic@github.com/".insteadOf "https://github.com/"
 
       - name: Install Hugo (extended)
         run: |
           HUGO_VER=0.134.2
-          wget -qO- https://github.com/gohugoio/hugo/releases/download/v${HUGO_VER}/hugo_extended_${HUGO_VER}_Linux-64bit.tar.gz \
+          wget -qO- "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VER}/hugo_extended_${HUGO_VER}_Linux-64bit.tar.gz" \
           | tar -xz hugo
           sudo mv hugo /usr/local/bin/hugo
 
       - name: Build blog into docs/blog
-        working-directory: ./blog
+        working-directory: ./blogs
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
+          CUSTOM_DOMAIN: ${{ env.CUSTOM_DOMAIN }}
         run: |
-          BASE_URL="https://$GITHUB_REPOSITORY_OWNER.github.io/${GITHUB_REPOSITORY#*/}/blog/"
+          BASE_URL="https://${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY#*/}/blog/"
           [ -n "${CUSTOM_DOMAIN}" ] && BASE_URL="https://${CUSTOM_DOMAIN}/blog/"
           mkdir -p ../docs/blog
           hugo --minify --baseURL "$BASE_URL" --destination ../docs/blog
