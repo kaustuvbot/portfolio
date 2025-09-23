@@ -29,8 +29,7 @@ jobs:
       - name: Copy portfolio files
         run: |
           mkdir -p public
-          cp -r * public/
-          rm -rf public/blog  # make sure blog folder will be rebuilt clean
+          rsync -av --exclude 'public' --exclude '.git' --exclude '.github' ./ ./public/
 
       # ---- Build blog (Hugo submodule) ----
       - name: Install Hugo (extended)
