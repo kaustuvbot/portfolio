@@ -25,25 +25,14 @@ jobs:
           submodules: recursive
           fetch-depth: 0
 
-      # (Optional) Configure Git for private submodules
-      - name: Configure Git for private submodules
+      # ---- Copy static portfolio (root) ----
+      - name: Copy portfolio files
         run: |
-          git config --global url."https://${{ secrets.GH_SUBMODULE_BLOG_TOKEN }}:x-oauth-basic@github.com/".insteadOf "https://github.com/"
-
-      # ---- Build Portfolio (root app) ----
-      - name: Install Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Build portfolio
-        run: |
-          npm ci
-          npm run build
           mkdir -p public
-          cp -r dist/* public/
+          cp -r * public/
+          rm -rf public/blog  # make sure blog folder will be rebuilt clean
 
-      # ---- Build Blog (Hugo submodule) ----
+      # ---- Build blog (Hugo submodule) ----
       - name: Install Hugo (extended)
         run: |
           HUGO_VER=0.134.2
