@@ -1,0 +1,29 @@
+name: Sync Blogs to Draft Branch
+on:
+  repository_dispatch:
+    types: [update_blogs_on_draft]
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Portfolio Draft Branch
+        uses: actions/checkout@v4
+        with:
+          ref: draft # <--- This ensures it works on the draft branch!
+          submodules: true
+          token: ${{ secrets.PORTFOLIO_UPDATE_TOKEN }}
+
+      - name: Update Submodule
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Tell git to update the submodule to the latest commit on its remote
+          git submodule update --remote --merge blogs
+
+          git add blogs
+          # Only commit if there are actually changes
+          git diff-index --quiet HEAD || git commit -m "Automated: Sync blogs to latest on draft branch"
+
+          git push origin draft
