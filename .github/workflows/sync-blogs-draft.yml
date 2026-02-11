@@ -13,7 +13,7 @@ jobs:
           ref: draft # <--- This ensures it works on the draft branch!
           submodules: true
           token: ${{ secrets.PORTFOLIO_UPDATE_TOKEN }}
-
+          fetch-depth: 0 
       - name: Update Submodule
         run: |
           git config --global user.name "github-actions[bot]"
