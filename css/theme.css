@@ -1,0 +1,157 @@
+/* ==================== THEME: CSS CUSTOM PROPERTIES ==================== */
+
+/* Dark theme (default) */
+:root {
+    --color-background: #1a1b1e;
+    --color-surface: #23252a;
+    --color-surface-elevated: #2c2f35;
+    --color-primary-text: #e8e9ed;
+    --color-secondary-text: #a8adb8;
+    --color-heading: #f5f6f8;
+    --color-accent: #d4a574;
+    --color-accent-hover: #c29560;
+    --color-accent-soft: #e8d4bc;
+    --color-tag: #2f3238;
+    --color-tag-text: #d4a574;
+    --color-border: #363940;
+    --color-card-bg: #23252a;
+}
+
+/* Light theme */
+html[data-theme="light"] {
+    --color-background: #f5f4f0;
+    --color-surface: #ede9e1;
+    --color-surface-elevated: #e2dbd0;
+    --color-primary-text: #2a2825;
+    --color-secondary-text: #6b6560;
+    --color-heading: #1a1817;
+    --color-accent: #a0702a;
+    --color-accent-hover: #8a5f22;
+    --color-accent-soft: #c49040;
+    --color-tag: #e8e0d4;
+    --color-tag-text: #a0702a;
+    --color-border: #d4ccc0;
+    --color-card-bg: #ede9e1;
+}
+
+
+/* ==================== BRIDGE: Override Tailwind CDN classes with CSS vars ==================== */
+
+/* Backgrounds */
+.bg-background     { background-color: var(--color-background) !important; }
+.bg-surface         { background-color: var(--color-surface) !important; }
+.bg-surface-elevated { background-color: var(--color-surface-elevated) !important; }
+.bg-tag             { background-color: var(--color-tag) !important; }
+.bg-card-bg         { background-color: var(--color-card-bg) !important; }
+.bg-accent          { background-color: var(--color-accent) !important; }
+
+/* Text */
+.text-primary-text  { color: var(--color-primary-text) !important; }
+.text-secondary-text { color: var(--color-secondary-text) !important; }
+.text-heading       { color: var(--color-heading) !important; }
+.text-accent        { color: var(--color-accent) !important; }
+.text-tag-text      { color: var(--color-tag-text) !important; }
+.text-background    { color: var(--color-background) !important; }
+
+/* Borders */
+.border-border-color { border-color: var(--color-border) !important; }
+
+/* Hover states */
+.hover\:bg-accent-hover:hover { background-color: var(--color-accent-hover) !important; }
+.hover\:bg-surface-elevated:hover { background-color: var(--color-surface-elevated) !important; }
+.hover\:text-accent:hover { color: var(--color-accent) !important; }
+
+/* Header transparency */
+.bg-background\/90 { background-color: color-mix(in srgb, var(--color-background) 90%, transparent) !important; }
+
+/* Scrollbar (light theme) */
+html[data-theme="light"] ::-webkit-scrollbar-track {
+    background: var(--color-background);
+}
+
+html[data-theme="light"] ::-webkit-scrollbar-thumb {
+    background: var(--color-accent);
+}
+
+html[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent-hover);
+}
+
+
+/* ==================== LIGHT THEME: Element-specific overrides ==================== */
+
+/* Logo color */
+html[data-theme="light"] .logo-static {
+    color: var(--color-accent);
+}
+
+/* Floating decorative elements */
+html[data-theme="light"] .floating-shape {
+    background: radial-gradient(circle, rgba(160, 112, 42, 0.06) 0%, transparent 70%);
+}
+
+html[data-theme="light"] .floating-dot {
+    background: rgba(160, 112, 42, 0.2);
+}
+
+html[data-theme="light"] .dot-large {
+    background: rgba(160, 112, 42, 0.25);
+}
+
+html[data-theme="light"] .floating-medium {
+    background: rgba(160, 112, 42, 0.1);
+}
+
+/* Orbit system */
+html[data-theme="light"] .orbiting-icon {
+    background: #f5f4f0;
+    box-shadow: 0 0 18px rgba(160, 112, 42, 0.2);
+}
+
+html[data-theme="light"] .orbit-trail {
+    border-color: rgba(160, 112, 42, 0.2);
+}
+
+html[data-theme="light"] .orbiting-icon img {
+    filter: invert(40%) sepia(50%) saturate(400%) hue-rotate(15deg) brightness(90%);
+}
+
+/* Section title colors */
+html[data-theme="light"] .section-title {
+    color: var(--color-heading);
+}
+
+html[data-theme="light"] .section-subtitle {
+    color: var(--color-secondary-text);
+}
+
+/* Card title gold underline */
+html[data-theme="light"] .card-title::after {
+    background: linear-gradient(90deg, var(--color-accent), transparent);
+}
+
+/* Header scrolled state */
+html[data-theme="light"] #header.scrolled {
+    background: rgba(245, 244, 240, 0.98);
+    border-bottom-color: rgba(160, 112, 42, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Star twinkle */
+html[data-theme="light"] .star {
+    background: var(--color-accent);
+    box-shadow: 0 0 6px rgba(160, 112, 42, 0.6);
+}
+
+/* Shadow adjustments */
+html[data-theme="light"] .shadow-subtle {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08) !important;
+}
+
+html[data-theme="light"] .shadow-accent-glow {
+    box-shadow: 0 0 0 2px rgba(160, 112, 42, 0.15), 0 12px 40px rgba(160, 112, 42, 0.1) !important;
+}
+
+html[data-theme="light"] .card-hover:hover {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}

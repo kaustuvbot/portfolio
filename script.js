@@ -172,6 +172,28 @@ console.log('%c👋 Hello there!', 'font-size: 20px; font-weight: bold; color: #
 console.log('%cInterested in the code? Check out my GitHub!', 'font-size: 14px; color: #a8adb8;');
 console.log('%chttps://github.com/kaustuvp', 'font-size: 14px; color: #d4a574;');
 
+document.addEventListener("DOMContentLoaded", function () {
+
+    const text = "Kaustuv Prajapati";
+    const speed = 90; // typing speed (lower = faster)
+    const target = document.getElementById("typedName");
+
+    let i = 0;
+
+    function typeWriter() {
+        if (i < text.length) {
+            target.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(typeWriter, speed);
+        } else {
+            target.classList.add("typing-cursor");
+        }
+    }
+
+    typeWriter();
+});
+
+
 // Prevent console errors from external scripts
 window.addEventListener('error', (e) => {
     if (e.message.includes('Script error')) {

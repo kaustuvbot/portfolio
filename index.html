@@ -7,7 +7,12 @@
     <title>Kaustuv Prajapati - DevOps & Cloud Engineer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/orbit.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/experience-tabs.css">
     <script>
         tailwind.config = {
             theme: {
@@ -50,7 +55,7 @@
 
 <body class="bg-background">
 
-    <!-- Enhanced Background Decor -->
+    <!-- ==================== BACKGROUND DECOR ==================== -->
     <div class="absolute inset-0 z-0 overflow-hidden">
         <!-- Large floating shapes -->
         <div class="floating-shape shape-1 w-[50rem] h-[50rem] top-[-20rem] left-[-25rem]"></div>
@@ -80,7 +85,7 @@
         <div class="floating-medium medium-5 w-7 h-7 top-[270vh] left-[70%]"></div>
     </div>
 
-    <!-- Header -->
+    <!-- ==================== HEADER / NAV ==================== -->
     <header id="header"
         class="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border-color transition-all duration-300">
         <div class="container mx-auto px-4 max-w-7xl">
@@ -94,15 +99,39 @@
                     <li><a href="#experience" class="hover:text-accent transition-colors">Experience</a></li>
                     <li><a href="#projects" class="hover:text-accent transition-colors">Projects</a></li>
                     <li><a href="#contact" class="hover:text-accent transition-colors">Contact</a></li>
+                    <li><a href="/blog/" class="hover:text-accent transition-colors">Blog</a></li>
                 </ul>
-                <button id="mobile-menu-btn" class="md:hidden text-heading">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="4" x2="20" y1="12" y2="12" />
-                        <line x1="4" x2="20" y1="6" y2="6" />
-                        <line x1="4" x2="20" y1="18" y2="18" />
-                    </svg>
-                </button>
+                <div class="flex items-center gap-3">
+                    <button id="theme-toggle" aria-label="Toggle color theme"
+                        class="p-2 rounded-full bg-surface border border-border-color hover:bg-surface-elevated transition-all">
+                        <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="text-accent">
+                            <circle cx="12" cy="12" r="5" />
+                            <line x1="12" y1="1" x2="12" y2="3" />
+                            <line x1="12" y1="21" x2="12" y2="23" />
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                            <line x1="1" y1="12" x2="3" y2="12" />
+                            <line x1="21" y1="12" x2="23" y2="12" />
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                        </svg>
+                        <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" class="text-accent hidden">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                        </svg>
+                    </button>
+                    <button id="mobile-menu-btn" class="md:hidden text-heading">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="4" x2="20" y1="12" y2="12" />
+                            <line x1="4" x2="20" y1="6" y2="6" />
+                            <line x1="4" x2="20" y1="18" y2="18" />
+                        </svg>
+                    </button>
+                </div>
             </nav>
         </div>
         <!-- Mobile Menu -->
@@ -113,12 +142,13 @@
                 <li><a href="#experience" class="hover:text-accent transition-colors">Experience</a></li>
                 <li><a href="#projects" class="hover:text-accent transition-colors">Projects</a></li>
                 <li><a href="#contact" class="hover:text-accent transition-colors">Contact</a></li>
+                <li><a href="/blog/" class="hover:text-accent transition-colors">Blog</a></li>
             </ul>
         </div>
     </header>
 
     <main class="container mx-auto px-4 relative z-10 max-w-7xl">
-        <!-- Hero Section -->
+        <!-- ==================== HERO (#home) ==================== -->
         <section id="home" class="min-h-screen flex items-center pt-20">
             <div class="grid md:grid-cols-2 items-center gap-12">
                 <div class="order-2 md:order-1 fade-in">
@@ -126,16 +156,16 @@
                         class="inline-flex items-center bg-tag px-3 py-1 rounded-full text-sm font-medium text-tag-text mb-4 border border-accent/20">
                         ⚡ Available for new opportunities
                     </div>
-                    <h1 class="text-4xl md:text-6xl font-bold text-heading">Hello, I'm <span class="text-accent">Kaustuv
-                            Prajapati</span></h1>
+                    <h1 class="text-4xl md:text-6xl font-bold text-heading">Hello, I'm <br><span class="text-accent"
+                            id="typedName"></span></h1>
                     <h2 class="text-2xl md:text-3xl font-bold text-accent mt-2 mb-4">DevOps & Cloud Engineer</h2>
-                    <p class="mb-8 text-primary-text leading-relaxed">Motivated DevOps Cloud Engineer with years of
-                        hands-on experience in cloud infrastructure management, automation, and system optimization.
+                    <p class="mb-8 text-primary-text leading-relaxed">Result-driven DevOps Engineer with over 6 years of
+                        experience in cloud infrastructure management, automation scripting, and architecting solutions.
                         Skilled in <span class="text-accent font-medium">AWS</span>, <span
                             class="text-accent font-medium">Terraform</span>,
                         <span class="text-accent font-medium">Kubernetes</span>, and <span
-                            class="text-accent font-medium">CI/CD pipelines</span>, I focus on enhancing system
-                        security, scalability, and efficiency through innovative solutions.
+                            class="text-accent font-medium">CI/CD pipelines</span>, with strong troubleshooting and
+                        knowledge-sharing abilities in fast-paced Agile teams.
                     </p>
                     <div class="flex flex-wrap gap-4 mb-8">
                         <a href="#projects"
@@ -147,18 +177,19 @@
                                 <polyline points="15 3 21 3 21 9" />
                                 <line x1="10" y1="14" x2="21" y2="3" />
                             </svg></a>
-                        <a href="./assets/Kaustuv_CV_July_2025.pdf" download
-                            class="bg-surface hover:bg-surface-elevated text-primary-text font-semibold py-3 px-6 rounded-lg transition-all duration-300 border border-border-color flex items-center gap-2">Download
+                        <a href="https://1drv.ms/w/c/20de537a95b4d592/IQBHANEDWbjFRrijfVwl2vMaAYlFa6XM5W7UoFprecw3FwI?e=NZPz1c"
+                            target="_blank" rel="noopener noreferrer"
+                            class="bg-surface hover:bg-surface-elevated text-primary-text font-semibold py-3 px-6 rounded-lg transition-all duration-300 border border-border-color flex items-center gap-2">View
                             CV <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round">
-                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                                <polyline points="7 10 12 15 17 10" />
-                                <line x1="12" y1="15" x2="12" y2="3" />
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                <polyline points="15 3 21 3 21 9" />
+                                <line x1="10" y1="14" x2="21" y2="3" />
                             </svg></a>
                     </div>
                     <div class="flex items-center space-x-4">
-                        <a href="#"
+                        <a href="https://github.com/kaustuvbot" target="_blank" rel="noopener noreferrer"
                             class="bg-surface p-3 rounded-full shadow-subtle hover:bg-surface-elevated hover:scale-110 transition-all border border-border-color"><svg
                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -167,7 +198,8 @@
                                     d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
                                 <path d="M9 18c-4.51 2-5-2-7-2" />
                             </svg></a>
-                        <a href="https://linkedin.com/in/kaustuvp"
+                        <a href="https://www.linkedin.com/in/kaustuvprajapati/" target="_blank"
+                            rel="noopener noreferrer"
                             class="bg-surface p-3 rounded-full shadow-subtle hover:bg-surface-elevated hover:scale-110 transition-all border border-border-color"><svg
                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -235,15 +267,15 @@
             </div>
         </section>
 
-        <!-- About Me Section -->
+        <!-- ==================== ABOUT (#about) ==================== -->
         <section id="about" class="pb-8">
             <h2 class="section-title !text-left">About Me</h2>
             <div class="grid md:grid-cols-5 gap-16 items-start">
                 <div class="md:col-span-3 fade-in">
-                    <p class="mb-6 text-primary-text leading-relaxed">I'm a motivated DevOps Cloud Engineer with years
-                        of hands-on experience in cloud infrastructure management, automation, and system optimization.
-                        I specialize in AWS, Terraform, Kubernetes, and CI/CD pipelines, focusing on enhancing
-                        system security, scalability, and efficiency.</p>
+                    <p class="mb-6 text-primary-text leading-relaxed">I'm a result-driven DevOps Engineer with over 6
+                        years of experience in cloud infrastructure management, automation scripting, and architecting
+                        solutions. I specialize in AWS, Terraform, Kubernetes, and CI/CD pipelines, with a track
+                        record of taking ownership while collaborating effectively in fast-paced Agile teams.</p>
                     <p class="mb-8 text-primary-text leading-relaxed">From automating complex deployment processes to
                         implementing compliance frameworks, I thrive on building innovative solutions that drive
                         operational impact. I'm also passionate about integrating cloud expertise with financial
@@ -278,17 +310,7 @@
                             </svg>
                             <span class="text-primary-text">+44-07480286956</span>
                         </div>
-                        <div class="flex items-center gap-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="text-accent">
-                                <path
-                                    d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                                <path d="M9 18c-4.51 2-5-2-7-2" />
-                            </svg>
-                            <a href='https://linkedin.com/in/kaustuvp'><span
-                                    class="text-primary-text hover:text-accent transition-colors">@kaustuvp</span></a>
-                        </div>
+
                     </div>
                 </div>
                 <div class="md:col-span-2 space-y-6 fade-in">
@@ -323,14 +345,14 @@
             </div>
         </section>
 
-        <!-- Technical Expertise Section -->
+        <!-- ==================== SKILLS (#skills) ==================== -->
         <section id="skills" class="py-8">
             <h2 class="section-title">Technical Expertise</h2>
             <p class="section-subtitle">Comprehensive skills in DevOps, cloud infrastructure, and automation
                 technologies
             </p>
             <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="bg-card-bg p-6 rounded-xl shadow-subtle card-hover slide-up border border-border-color">
+                <div class="bg-card-bg p-6 rounded-xl shadow-subtle card-hover reveal border border-border-color">
                     <h3 class="text-lg font-bold text-heading mb-4 flex items-center gap-2 card-title"><svg
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -345,7 +367,7 @@
                         <p class="bg-tag p-2 rounded-md text-primary-text border border-accent/10">Shell Scripting</p>
                     </div>
                 </div>
-                <div class="bg-card-bg p-6 rounded-xl shadow-subtle card-hover slide-up border border-border-color">
+                <div class="bg-card-bg p-6 rounded-xl shadow-subtle card-hover reveal border border-border-color">
                     <h3 class="text-lg font-bold text-heading mb-4 flex items-center gap-2 card-title"><svg
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -364,7 +386,7 @@
                         <p class="bg-tag p-2 rounded-md text-primary-text border border-accent/10">SonarQube</p>
                     </div>
                 </div>
-                <div class="bg-card-bg p-6 rounded-xl shadow-subtle card-hover slide-up border border-border-color">
+                <div class="bg-card-bg p-6 rounded-xl shadow-subtle card-hover reveal border border-border-color">
                     <h3 class="text-lg font-bold text-heading mb-4 flex items-center gap-2 card-title"><svg
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -381,7 +403,7 @@
                         <p class="bg-tag p-2 rounded-md text-primary-text border border-accent/10">Cloud Panel</p>
                     </div>
                 </div>
-                <div class="bg-card-bg p-6 rounded-xl shadow-subtle card-hover slide-up border border-border-color">
+                <div class="bg-card-bg p-6 rounded-xl shadow-subtle card-hover reveal border border-border-color">
                     <h3 class="text-lg font-bold text-heading mb-4 flex items-center gap-2 card-title"><svg
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -405,118 +427,157 @@
             </div>
         </section>
 
-        <!-- Work Experience Section -->
+        <!-- ==================== EXPERIENCE (#experience) ==================== -->
         <section id="experience" class="py-8">
             <h2 class="section-title">Work Experience</h2>
             <p class="section-subtitle">Professional journey in DevOps, cloud infrastructure, and automation</p>
-            <div class="max-w-3xl mx-auto space-y-12">
-                <div class="timeline">
-                    <div class="timeline-item relative slide-up">
-                        <div class="bg-card-bg p-8 rounded-xl shadow-subtle card-hover border border-border-color">
-                            <div class="flex justify-between items-start mb-2">
-                                <div>
-                                    <h3 class="text-xl font-bold text-heading card-title">DevOps Engineer (SWAT Team)
-                                    </h3>
-                                    <p class="text-accent font-semibold text-lg">Techkraft Inc. / Abacus Insights</p>
-                                </div>
-                                <div class="text-sm text-secondary-text space-y-1">
-                                    <p class="flex items-center justify-end gap-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" class="text-accent">
-                                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                                            <line x1="16" y1="2" x2="16" y2="6"></line>
-                                            <line x1="8" y1="2" x2="8" y2="6"></line>
-                                            <line x1="3" y1="10" x2="21" y2="10"></line>
-                                        </svg>
-                                        <span>Nov 2022 - Aug 2024</span>
-                                    </p>
-                                    <p class="flex items-center justify-end gap-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" class="text-accent">
-                                            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-                                            <circle cx="12" cy="10" r="3" />
-                                        </svg>
-                                        <span>Chakupat, Lalitpur</span>
-                                    </p>
-                                </div>
-                            </div>
-                            <p class="text-secondary-text mb-4">Led DevOps initiatives focusing on compliance
-                                automation, infrastructure as code, and serverless solutions.</p>
-                            <h4 class="font-semibold mb-3 text-heading">Key Achievements:</h4>
-                            <ul class="space-y-2 text-primary-text custom-bullets">
-                                <li class="leading-relaxed"><strong class="text-accent">Git Compliance Project:</strong>
-                                    Maintained centralized security policy codebase in GitLab, enforcing dynamic
-                                    compliance across 200+ repositories, resulting in a 35% reduction in security risks.
-                                </li>
-                                <li class="leading-relaxed"><strong class="text-accent">Pipeline Migration &
-                                        Automation:</strong> Automated upgrades for pipeline runners across 200+
-                                    projects, boosting update efficiency by 500%. Led Python 3.7-to-3.11 migration with
-                                    zero downtime.</li>
-                                <li class="leading-relaxed"><strong class="text-accent">Serverless Backend
-                                        Design:</strong> Designed secure, serverless backend for S3-hosted static
-                                    websites with multi-environment support, VPN authentication, and data encryption.
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+
+            <div class="exp-container">
+                <!-- Tab List (left sidebar) -->
+                <div class="exp-tabs" role="tablist" aria-label="Work Experience">
+                    <button class="exp-tab active" role="tab" aria-selected="true" aria-controls="exp-panel-0"
+                        data-index="0">
+                        <span class="exp-tab-company">Freelance / DGCL</span>
+                        <span class="exp-tab-role">DevOps &amp; Cloud Consultant</span>
+                    </button>
+                    <button class="exp-tab" role="tab" aria-selected="false" aria-controls="exp-panel-1" data-index="1">
+                        <span class="exp-tab-company">Yirifi.ai</span>
+                        <span class="exp-tab-role">DevOps Engineer</span>
+                    </button>
+                    <button class="exp-tab" role="tab" aria-selected="false" aria-controls="exp-panel-2" data-index="2">
+                        <span class="exp-tab-company">Techkraft / Abacus</span>
+                        <span class="exp-tab-role">SE2 &rarr; SE3</span>
+                    </button>
+                    <button class="exp-tab" role="tab" aria-selected="false" aria-controls="exp-panel-3" data-index="3">
+                        <span class="exp-tab-company">Ambit R&D</span>
+                        <span class="exp-tab-role">AWS Infra &amp; Linux Admin</span>
+                    </button>
                 </div>
-                <div class="timeline">
-                    <div class="timeline-item relative slide-up">
-                        <div class="bg-card-bg p-8 rounded-xl shadow-subtle card-hover border border-border-color">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <h3 class="text-xl font-bold text-heading card-title">DevOps Engineer</h3>
-                                    <p class="text-accent font-semibold text-lg">Yirifi.ai</p>
-                                </div>
-                                <div class="text-sm text-secondary-text space-y-1">
-                                    <p class="flex items-center justify-end gap-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" class="text-accent">
-                                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                                            <line x1="16" y1="2" x2="16" y2="6"></line>
-                                            <line x1="8" y1="2" x2="8" y2="6"></line>
-                                            <line x1="3" y1="10" x2="21" y2="10"></line>
-                                        </svg>
-                                        <span>Apr 2024 - Oct 2024</span>
-                                    </p>
-                                    <p class="flex items-center justify-end gap-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" class="text-accent">
-                                            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-                                            <circle cx="12" cy="10" r="3" />
-                                        </svg>
-                                        <span>Singapore (Part-time)</span>
-                                    </p>
-                                </div>
-                            </div>
-                            <p class="text-secondary-text mb-4">Led GitHub compliance automation and Hashicorp Vault
-                                administration for secure cloud infrastructure.</p>
-                            <h4 class="font-semibold mb-3 text-heading">Key Achievements:</h4>
-                            <ul class="space-y-2 text-primary-text custom-bullets">
-                                <li class="leading-relaxed"><strong class="text-accent">GitHub Compliance
-                                        Project:</strong> Initiated and led organization-wide configuration management
-                                    using Python, reducing manual errors by 30% and enhancing operational efficiency by
-                                    25%.
-                                </li>
-                                <li class="leading-relaxed"><strong class="text-accent">Hashicorp Vault
-                                        Administration:</strong> Configured and hosted Vault on VPS with AWS
-                                    integration, establishing token-based credential access system, cutting unauthorized
-                                    access risks by 40%.</li>
-                                <li class="leading-relaxed"><strong class="text-accent">ISO/MAS Compliance:</strong>
-                                    Designed custom AWS Config templates via CloudFormation, achieving 100% adherence to
-                                    MAS (Singapore) and ISO standards, reducing audit prep time by 20%.</li>
-                            </ul>
-                        </div>
-                    </div>
+
+                <!-- Detail Panels (right) -->
+                <div id="exp-panel-0" class="exp-panel active" role="tabpanel">
+                    <h3 class="exp-title">Freelance DevOps &amp; Cloud Consultant</h3>
+                    <p class="exp-dates">2025 - Present &middot; London, UK</p>
+                    <p class="exp-summary">Freelance consulting across multiple clients, plus live instruction at
+                        Digital Cloud Academy.</p>
+                    <ul class="exp-achievements">
+                        <li><strong>Cross-Account RDS Migration:</strong> Executed cross-account RDS migrations and
+                            implemented AWS CodeArtifact with GitHub OIDC for Python/Maven package management.</li>
+                        <li><strong>Production EKS Deployment:</strong> Deployed production EKS using Pulumi with
+                            GitOps-first architecture for automated CD.</li>
+                        <li><strong>Security &amp; FinOps:</strong> Remediated Security Hub violations achieving
+                            compliance with CIS Benchmark and AWS Foundational Security Best Practices. Implemented DoiT
+                            platform for multi-account AWS Security and FinOps
+                            Dashboard, integrating Trusted Advisor, Config, and Inspector findings with automated Jira
+                            workflows.
+                        </li>
+                        <li><strong>Golden AMI Automation:</strong> Automated Windows/Linux golden AMI builds using
+                            Packer, Ansible, and GitLab CI with dynamic credential generation, reducing build time by
+                            40%.
+                        </li>
+                        <li><strong>Digital Cloud Academy (Instructor):</strong> Deliver AWS cloud, DevOps, Data
+                            Engineering and AI technical training with hands-on mentorship, developing 40+ lab exercises
+                            and projects across cloud migration, CI/CD, Kubernetes,
+                            open-source and cloud tools.</li>
+                    </ul>
+                </div>
+
+                <div id="exp-panel-1" class="exp-panel" role="tabpanel">
+                    <h3 class="exp-title">DevOps Engineer <span class="exp-company">@ Yirifi.ai</span></h3>
+                    <p class="exp-dates">Apr 2024 - Oct 2024 &middot; Singapore (Part-time contract)</p>
+                    <p class="exp-summary">Led serverless compliance automation, Vault administration, and
+                        infrastructure provisioning for a Singapore-based startup.</p>
+                    <ul class="exp-achievements">
+                        <li><strong>Git Compliance Engine:</strong> Led serverless Git compliance engine
+                            (Python/Lambda/GitHub API) automating branch protection enforcement, credential scanning,
+                            and compliance reporting across organization repositories.</li>
+                        <li><strong>Tooling Automation:</strong> Automated on/offboarding of company-used tools,
+                            reducing manual intervention by 80%.</li>
+                        <li><strong>HashiCorp Vault:</strong> Deployed HashiCorp Vault on VPS with AWS Secrets Engine,
+                            implementing policy-based token access control and dynamic credential creation for secure,
+                            TTL access with Shell script and HCL.</li>
+                        <li><strong>Terragrunt &amp; Terraform Cloud:</strong> Implementation supporting
+                            multi-environment deployment. Managed user-required infra environment provisioning.</li>
+                        <li><strong>ISO/MAS Compliance:</strong> Implemented AWS Config, Custom CloudFormation templates
+                            and Security Hub to automate MAS (Singapore) and ISO compliance monitoring, achieving 100%
+                            policy adherence and reducing audit prep time
+                            by 20%.</li>
+                        <li><strong>Infrastructure &amp; Observability:</strong> Set up infrastructure for various teams
+                            leveraging SLA, SLI, SLO, and KPI monitoring with NewRelic. Managed Docker Compose,
+                            artifacts, and pipelines for Airbyte, Airflow, Apache
+                            Flink, and FastAPI.</li>
+                    </ul>
+                </div>
+
+                <div id="exp-panel-2" class="exp-panel" role="tabpanel">
+                    <h3 class="exp-title">SE2 &rarr; SE3 <span class="exp-company">@ Techkraft Inc. / Abacus
+                            Insights</span></h3>
+                    <p class="exp-dates">Aug 2022 - Aug 2024 &middot; Lalitpur, Nepal</p>
+                    <p class="exp-summary">Progressed from DevOps Engineer (ML/Data Platform Support) to Dispatch
+                        Engineer, leading compliance automation, serverless pipelines, and CI/CD across 200+ projects.
+                    </p>
+                    <h4 class="text-sm font-semibold text-accent mt-4 mb-2">SE3 — Dispatch Engineer</h4>
+                    <ul class="exp-achievements">
+                        <li><strong>Kubernetes &amp; Containers:</strong> Developed Dockerfiles and managed
+                            containerized workloads on Kubernetes clusters for scalable application deployment.</li>
+                        <li><strong>Git Compliance:</strong> Maintained compliance enforcement across 200+ repositories
+                            via centralized GitLab policies, resulting in a 35% reduction in security risks.</li>
+                        <li><strong>CI/CD &amp; Migration:</strong> Automated runner upgrades for 200+ projects (80%
+                            faster deployments) and led Python 3.7-to-3.11 migration with zero downtime.</li>
+                        <li><strong>Serverless Backend:</strong> Led and architected secure, multi-environment
+                            serverless backend with VPN authentication and automated Lambda layer deployments, reducing
+                            manual effort by 25%.</li>
+                    </ul>
+                    <h4 class="text-sm font-semibold text-accent mt-4 mb-2">SE2 — DevOps Engineer (ML/Data Platform
+                        Support)
+                    </h4>
+                    <ul class="exp-achievements">
+                        <li><strong>Jira Automation (Lead Architect):</strong> Architected decoupled serverless data
+                            pipeline integrating Jira-Replicon using event-driven architecture (Lambda, EventBridge,
+                            Glue, DynamoDB) with Terraform IaC and GitOps-first
+                            deployment, reducing manual processing by 40% and event handling latency by 30%.</li>
+                        <li><strong>Azure DevOps CI/CD:</strong> Developed Azure DevOps CI/CD pipeline for Node.js and
+                            .NET with hybrid cloud runners, SonarQube SAST, and Ansible-based server configuration,
+                            improving efficiency by 20%.</li>
+                        <li><strong>Data Ingestion Pipeline:</strong> Provided SWAT team support for legacy Python data
+                            ingestion pipeline with ICM/MDM integration, resolving production bugs and managing
+                            microservices deployment.</li>
+                        <li><strong>Cross-Functional Support:</strong> Onboarding, device setup, documentation, security
+                            training, and Clean Room setup for ISO standardization of Data Engineering workspace.</li>
+                    </ul>
+                </div>
+
+                <div id="exp-panel-3" class="exp-panel" role="tabpanel">
+                    <h3 class="exp-title">AWS Infrastructure Engineer / Linux Admin <span class="exp-company">@ Ambit
+                            R&D Pvt. Ltd</span></h3>
+                    <p class="exp-dates">Feb 2019 - Jul 2022 &middot; Thimi, Bhaktapur</p>
+                    <p class="exp-summary">Managed AWS infrastructure and Linux server operations, progressing from
+                        admin to infrastructure engineer.</p>
+                    <h4 class="text-sm font-semibold text-accent mt-4 mb-2">AWS Infrastructure Engineer</h4>
+                    <ul class="exp-achievements">
+                        <li><strong>Scalable Architecture:</strong> Deployed scalable 3-tier system with EC2 Auto
+                            Scaling, VPC security, RDS, and CloudWatch monitoring.</li>
+                        <li><strong>Shift-Left Initiatives:</strong> Drove shift-left initiatives integrating
+                            monitoring, security, and performance testing early in development lifecycle, implementing
+                            AWS Well-Architected Framework and Trusted Advisor recommendations.</li>
+                        <li><strong>Lifecycle Operations:</strong> Managed EC2 instances provisioning, patching, and
+                            backup automation enhancing resilience and minimizing downtime during maintenance windows.
+                        </li>
+                    </ul>
+                    <h4 class="text-sm font-semibold text-accent mt-4 mb-2">Linux Admin</h4>
+                    <ul class="exp-achievements">
+                        <li><strong>Server Administration:</strong> Administered multiple Linux servers ensuring optimal
+                            uptime, performance, and security. Deployed web servers (Nginx, Apache) for hosting dynamic
+                            and static applications.</li>
+                        <li><strong>Database &amp; Automation:</strong> Managed MySQL databases including setup,
+                            optimization, and scheduled backups. Wrote Bash scripts for log rotation, system monitoring,
+                            and routine maintenance tasks.</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
-        <!-- Featured Projects Section -->
+        <!-- ==================== PROJECTS (#projects) ==================== -->
         <section id="projects" class="py-8">
             <h2 class="section-title">Featured Projects</h2>
             <p class="section-subtitle">A showcase of my technical expertise in DevOps automation, cloud infrastructure,
@@ -524,7 +585,7 @@
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Project 1 -->
                 <div
-                    class="bg-card-bg p-6 rounded-xl shadow-subtle card-hover flex flex-col slide-up border border-border-color">
+                    class="bg-card-bg p-6 rounded-xl shadow-subtle card-hover flex flex-col reveal border border-border-color">
                     <div class="flex-grow">
                         <div class="flex justify-between items-center mb-4">
                             <div class="bg-tag p-3 rounded-lg border border-accent/20"><svg
@@ -567,22 +628,21 @@
                         </div>
                     </div>
                     <div class="mt-auto pt-6 text-center">
-                        <a href="#"
-                            class="inline-flex items-center gap-2 text-sm font-medium text-primary-text border border-border-color rounded-lg px-4 py-2 hover:bg-surface-elevated hover:text-accent transition-colors">
-                            <span>Code</span>
+                        <span
+                            class="inline-flex items-center gap-2 text-sm font-medium text-secondary-text border border-border-color rounded-lg px-4 py-2 cursor-not-allowed opacity-60">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round">
-                                <path
-                                    d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                                <path d="M9 18c-4.51 2-5-2-7-2" />
+                                <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                             </svg>
-                        </a>
+                            <span>Private</span>
+                        </span>
                     </div>
                 </div>
                 <!-- Project 2 -->
                 <div
-                    class="bg-card-bg p-6 rounded-xl shadow-subtle card-hover flex flex-col slide-up border border-border-color">
+                    class="bg-card-bg p-6 rounded-xl shadow-subtle card-hover flex flex-col reveal border border-border-color">
                     <div class="flex-grow">
                         <div class="flex justify-between items-center mb-4">
                             <div class="bg-tag p-3 rounded-lg border border-accent/20"><svg
@@ -624,22 +684,21 @@
                         </div>
                     </div>
                     <div class="mt-auto pt-6 text-center">
-                        <a href="#"
-                            class="inline-flex items-center gap-2 text-sm font-medium text-primary-text border border-border-color rounded-lg px-4 py-2 hover:bg-surface-elevated hover:text-accent transition-colors">
-                            <span>Code</span>
+                        <span
+                            class="inline-flex items-center gap-2 text-sm font-medium text-secondary-text border border-border-color rounded-lg px-4 py-2 cursor-not-allowed opacity-60">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round">
-                                <path
-                                    d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                                <path d="M9 18c-4.51 2-5-2-7-2" />
+                                <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                             </svg>
-                        </a>
+                            <span>Private</span>
+                        </span>
                     </div>
                 </div>
                 <!-- Project 3 -->
                 <div
-                    class="bg-card-bg p-6 rounded-xl shadow-subtle card-hover flex flex-col slide-up border border-border-color">
+                    class="bg-card-bg p-6 rounded-xl shadow-subtle card-hover flex flex-col reveal border border-border-color">
                     <div class="flex-grow">
                         <div class="flex justify-between items-center mb-4">
                             <div class="bg-tag p-3 rounded-lg border border-accent/20"><svg
@@ -681,27 +740,26 @@
                         </div>
                     </div>
                     <div class="mt-auto pt-6 text-center">
-                        <a href="#"
-                            class="inline-flex items-center gap-2 text-sm font-medium text-primary-text border border-border-color rounded-lg px-4 py-2 hover:bg-surface-elevated hover:text-accent transition-colors">
-                            <span>Code</span>
+                        <span
+                            class="inline-flex items-center gap-2 text-sm font-medium text-secondary-text border border-border-color rounded-lg px-4 py-2 cursor-not-allowed opacity-60">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round">
-                                <path
-                                    d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                                <path d="M9 18c-4.51 2-5-2-7-2" />
+                                <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                             </svg>
-                        </a>
+                            <span>Private</span>
+                        </span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Certifications Section -->
+        <!-- ==================== CERTIFICATIONS (#certifications) ==================== -->
         <section id="certifications" class="py-8">
             <h2 class="section-title">Certifications</h2>
             <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                <div class="bg-card-bg p-6 rounded-xl shadow-subtle card-hover slide-up border border-border-color">
+                <div class="bg-card-bg p-6 rounded-xl shadow-subtle card-hover reveal border border-border-color">
                     <div class="flex items-start">
                         <div class="w-8 pt-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -724,7 +782,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-card-bg p-6 rounded-xl shadow-subtle card-hover slide-up border border-border-color">
+                <div class="bg-card-bg p-6 rounded-xl shadow-subtle card-hover reveal border border-border-color">
                     <div class="flex items-start">
                         <div class="w-8 pt-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -749,7 +807,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-card-bg p-6 rounded-xl shadow-subtle card-hover slide-up border border-border-color">
+                <div class="bg-card-bg p-6 rounded-xl shadow-subtle card-hover reveal border border-border-color">
                     <div class="flex items-start">
                         <div class="w-8 pt-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -772,7 +830,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-card-bg p-6 rounded-xl shadow-subtle card-hover slide-up border border-border-color">
+                <div class="bg-card-bg p-6 rounded-xl shadow-subtle card-hover reveal border border-border-color">
                     <div class="flex items-start">
                         <div class="w-8 pt-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -796,7 +854,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-card-bg p-6 rounded-xl shadow-subtle card-hover slide-up border border-border-color">
+                <div class="bg-card-bg p-6 rounded-xl shadow-subtle card-hover reveal border border-border-color">
                     <div class="flex items-start">
                         <div class="w-8 pt-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -826,12 +884,12 @@
             </div>
         </section>
 
-        <!-- Achievements Section -->
+        <!-- ==================== ACHIEVEMENTS (#achievements) ==================== -->
         <section id="achievements" class="py-8">
             <h2 class="section-title">Achievements</h2>
             <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 <div
-                    class="bg-card-bg p-8 rounded-xl shadow-subtle card-hover text-left flex items-start gap-6 slide-up border border-border-color">
+                    class="bg-card-bg p-8 rounded-xl shadow-subtle card-hover text-left flex items-start gap-6 reveal border border-border-color">
                     <div class="bg-tag p-4 rounded-lg mt-1 border border-accent/20">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -851,7 +909,7 @@
                     </div>
                 </div>
                 <div
-                    class="bg-card-bg p-8 rounded-xl shadow-subtle card-hover text-left flex items-start gap-6 slide-up border border-border-color">
+                    class="bg-card-bg p-8 rounded-xl shadow-subtle card-hover text-left flex items-start gap-6 reveal border border-border-color">
                     <div class="bg-tag p-4 rounded-lg mt-1 border border-accent/20">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -875,7 +933,32 @@
             </div>
         </section>
 
-        <!-- Get In Touch Section -->
+        <!-- ==================== BLOG (#blog) ==================== -->
+        <section id="blog" class="py-8">
+            <h2 class="section-title">Writing</h2>
+            <p class="section-subtitle">Thoughts on DevOps, cloud infrastructure, and engineering</p>
+            <div class="text-center">
+                <a href="/blog/"
+                    class="inline-flex items-center gap-4 bg-surface border border-border-color hover:border-accent/40 hover:bg-surface-elevated px-8 py-5 rounded-xl transition-all duration-300 group">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="text-accent">
+                        <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
+                    </svg>
+                    <div class="text-left">
+                        <p class="font-semibold text-heading">Read the Blog</p>
+                        <p class="text-sm text-secondary-text">DevOps, cloud, and engineering articles</p>
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="text-accent ml-4 group-hover:translate-x-1 transition-transform">
+                        <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                </a>
+            </div>
+        </section>
+
+        <!-- ==================== CONTACT (#contact) ==================== -->
         <section id="contact" class="py-8">
             <h2 class="section-title">Get In Touch</h2>
             <p class="section-subtitle">Ready to discuss your next DevOps or cloud infrastructure project? I'd love to
@@ -976,14 +1059,18 @@
 
     </main>
 
-    <!-- Footer -->
+    <!-- ==================== FOOTER ==================== -->
     <footer class="border-t border-border-color mt-12">
         <div class="container mx-auto px-4 py-8 text-center text-secondary-text max-w-7xl">
             <p>&copy; 2026 Kaustuv Prajapati. All Rights Reserved.</p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/form.js"></script>
+    <script src="js/experience.js"></script>
+    <script src="js/theme.js"></script>
 </body>
 
 </html>

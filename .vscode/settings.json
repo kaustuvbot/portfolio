@@ -38,5 +38,6 @@
         "titleBar.inactiveBackground": "#a5df6099",
         "titleBar.inactiveForeground": "#15202b99"
     },
-    "peacock.color": "#a5df60"
+    "peacock.color": "#a5df60",
+    "claudeCodeChat.permissions.yoloMode": false
 }
