@@ -1,0 +1,65 @@
+/* ==================== SECTION TITLES ==================== */
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #f5f6f8;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #a8adb8;
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* ==================== CARD HOVER EFFECTS ==================== */
+
+.card-hover {
+    transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+}
+
+
+/* ==================== CARD TITLE WITH GOLD ACCENT ==================== */
+
+.card-title {
+    position: relative;
+}
+
+.card-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(90deg, #d4a574, transparent);
+}
+
+
+/* ==================== HEADER SCROLL EFFECT ==================== */
+
+#header.scrolled {
+    background: rgba(26, 27, 30, 0.98);
+    border-bottom: 1px solid rgba(212, 165, 116, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+
+/* ==================== PROFILE IMAGE CONTAINER ==================== */
+
+.image-container {
+    position: relative;
+    overflow: visible;
+    z-index: 1;
+}
