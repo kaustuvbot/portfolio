@@ -1,0 +1,98 @@
+name: Deploy Main and Draft
+
+on:
+  push:
+    branches: [main, draft]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      # -----------------------------
+      # Checkout repositories
+      # -----------------------------
+      - name: Checkout Main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          submodules: recursive
+          fetch-depth: 0
+          path: prod_site
+
+      - name: Checkout Draft
+        uses: actions/checkout@v4
+        with:
+          ref: draft
+          submodules: recursive
+          fetch-depth: 0
+          path: staging_site
+
+      # -----------------------------
+      # Install Hugo
+      # -----------------------------
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "latest"
+          extended: true
+
+      # -----------------------------
+      # Build Production Site
+      # Output → prod_site/docs/blog
+      # -----------------------------
+      - name: Build Main Site
+        working-directory: prod_site
+        run: |
+          hugo --baseURL="https://kaustuvbot.github.io/"
+
+      # -----------------------------
+      # Build Draft Site
+      # Output → staging_site/docs/blog
+      # -----------------------------
+      - name: Build Draft Site
+        working-directory: staging_site
+        run: |
+          hugo \
+            --baseURL="https://kaustuvbot.github.io/draft/" \
+            --buildDrafts \
+            --buildFuture
+
+      # -----------------------------
+      # Merge outputs for Pages
+      # -----------------------------
+      - name: Prepare Deployment Directory
+        run: |
+          mkdir -p public
+          mkdir -p public/draft
+
+          # Copy production build
+          cp -a prod_site/docs/blog/. public/
+
+          # Copy draft build into subfolder
+          cp -a staging_site/docs/blog/. public/draft/
+
+          # Remove git metadata if present
+          find public -name ".git*" -exec rm -rf {} + || true
+
+      # -----------------------------
+      # Upload + Deploy
+      # -----------------------------
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
