@@ -27,6 +27,7 @@ jobs:
         with:
           ref: main
           submodules: recursive
+          token: ${{ secrets.CHPAT }}
           fetch-depth: 0
           path: prod_site
 
@@ -35,6 +36,7 @@ jobs:
         with:
           ref: draft
           submodules: recursive
+          token: ${{ secrets.CHPAT }}
           fetch-depth: 0
           path: staging_site
 
