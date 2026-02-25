@@ -267,3 +267,28 @@
         padding: 24px 0 0 0;
     }
 }
+
+/* ==================== PROJECT SECTION TABS ==================== */
+
+.project-tab {
+    color: var(--color-secondary-text, #a8adb8);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.project-tab:hover {
+    color: var(--color-heading, #f5f6f8);
+}
+
+.project-tab.active {
+    background: var(--color-accent, #d4a574);
+    color: var(--color-background, #1a1c20);
+    font-weight: 700;
+}
+
+/* Hide scrollbar in company carousel (Chrome/Safari) */
+#company-scroll::-webkit-scrollbar {
+    display: none;
+}
