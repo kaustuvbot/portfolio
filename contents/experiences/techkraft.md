@@ -23,7 +23,7 @@ Promoted from SE2 to SE3 based on demonstrated ownership of high-impact infrastr
 *Role: SE2 — DevOps Engineer, ML/Data Platform*
 
 ### Tools Utilized
-AWS Lambda, AWS EventBridge, AWS Glue, DynamoDB, Terraform, GitLab CI, Seiji (Internal Tool), Python
+AWS Lambda, AWS EventBridge, AWS Glue, DynamoDB, Terraform, GitLab CI, Seiji (Internal Tool), Python, GCP BigQuery, Pub/Sub
 
 ### Overview
 Led and architected a decoupled serverless data pipeline integrating Jira and Replicon using event-driven architecture. Designed the full solution from infrastructure to deployment, implementing Infrastructure-as-Code with Terraform and a GitOps-first delivery model using the internal Seiji deployment tool.
@@ -34,6 +34,7 @@ Led and architected a decoupled serverless data pipeline integrating Jira and Re
 - Terraform IaC authoring and state management
 - GitOps-driven deployment via Seiji
 - DynamoDB data modelling and Glue job configuration
+- Integrated GCP BigQuery as a downstream analytics sink for the ETL pipeline, enabling cross-cloud data flow from AWS S3 via Pub/Sub with Terraform-managed infrastructure
 
 ### Achievements
 - Reduced manual processing by **40%**
@@ -172,7 +173,7 @@ Led centralised Git compliance enforcement across 200+ repositories, embedding p
 *Role: SE2 → SE3 — Cross-role contribution*
 
 ### Tools Utilized
-Splunk, AWS CloudWatch, Azure Monitor, Python, Airflow, GitLab CI
+Splunk, AWS CloudWatch, Azure Monitor, Python, Airflow, GitLab CI, GCE, GCP Cloud Storage
 
 ### Overview
 Implemented centralised logging and observability across the platform using Splunk, CloudWatch, and Azure Monitor. Additionally maintained and enhanced legacy Python data ingestion pipelines, resolving production issues and managing microservices deployment and versioning. Led Clean Room setup for ISO standardisation of the Data Engineering workspace.
@@ -183,6 +184,7 @@ Implemented centralised logging and observability across the platform using Splu
 - Production bug resolution for Python data ingestion pipelines
 - Microservices deployment and versioning tag management
 - Clean Room environment setup for ISO compliance
+- Deployed and managed GCE instances and Cloud Storage buckets for client-specific workloads, using Terraform modules
 
 ### Achievements
 - Enhanced operational visibility across hybrid cloud environments

@@ -81,7 +81,7 @@ Implemented a scalable infrastructure-as-code solution using Terragrunt and Terr
 ## 4. Additional Contributions
 
 ### Tools Utilized
-AWS Amplify, AWS Config, AWS Security Hub, CloudFormation, New Relic, Docker Compose, Airflow, Airbyte, Apache Flink, FastAPI, GitLab CI
+AWS Amplify, AWS Config, AWS Security Hub, CloudFormation, New Relic, Docker Compose, Airflow, Airbyte, Apache Flink, FastAPI, GitLab CI, Terraform, GKE, Cloud Run, GCP IAM
 
 ### Overview
 Delivered a range of supporting infrastructure, compliance, and automation initiatives across the engineering organisation to strengthen operational reliability, security posture, and developer experience.
@@ -92,6 +92,8 @@ Delivered a range of supporting infrastructure, compliance, and automation initi
 - Implemented AWS Config, Security Hub, and custom CloudFormation templates for automated compliance monitoring
 - Configured SLA/SLI/SLO/KPI monitoring using New Relic
 - Managed Docker Compose pipelines and artifacts for Airbyte, Airflow, Apache Flink, and FastAPI
+- Provisioned GCP infrastructure using Terraform, deploying containerised workloads on GKE and Cloud Run for internal tooling and data pipeline services
+- Configured GCP IAM roles and service accounts with least-privilege access, aligning with existing AWS security posture and ISO/MAS compliance requirements
 
 ### Achievements
 - Contributed to **100% policy adherence** for MAS (Singapore) and ISO standards
