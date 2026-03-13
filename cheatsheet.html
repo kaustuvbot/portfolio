@@ -450,7 +450,7 @@
                     <p class="cheat-card-copy">Separate environments and scope commands to the correct namespace.</p>
                     <div class="cheat-list">
                         <div class="cheat-item"><code class="cheat-command">kubectl get ns</code><p class="cheat-description">List namespaces.</p></div>
-                        <div class="cheat-item"><code class="cheat-command">kubectl create namespace staging</code><p class="cheat-description">Create a namespace.</p></div>
+                        <div class="cheat-item cheat-item-imperative"><span class="cheat-badge">Quick live change</span><code class="cheat-command">kubectl create namespace staging</code><p class="cheat-description">Create a namespace.</p><p class="cheat-note"><strong>Persistence:</strong> add the namespace manifest to source control if it should exist after cluster rebuilds or environment recreation.</p></div>
                         <div class="cheat-item"><code class="cheat-command">kubectl config set-context --current --namespace=staging</code><p class="cheat-description">Set the default namespace for the current context.</p></div>
                         <div class="cheat-item"><code class="cheat-command">kubectl get all -n staging</code><p class="cheat-description">List common workload resources in one namespace.</p></div>
                     </div>
@@ -464,7 +464,7 @@
                         <div class="cheat-item"><code class="cheat-command">kubectl get pods -A</code><p class="cheat-description">List pods across all namespaces.</p></div>
                         <div class="cheat-item"><code class="cheat-command">kubectl get pods -o wide</code><p class="cheat-description">Show nodes, pod IPs, and extra scheduling details.</p></div>
                         <div class="cheat-item"><code class="cheat-command">kubectl describe pod my-pod</code><p class="cheat-description">Inspect events, conditions, volumes, and container state.</p></div>
-                        <div class="cheat-item"><code class="cheat-command">kubectl delete pod my-pod</code><p class="cheat-description">Delete a pod so its controller can recreate it.</p><p class="cheat-note"><strong>Operational note:</strong> safe for managed workloads, but avoid on one-off pods unless intentional.</p></div>
+                        <div class="cheat-item cheat-item-imperative"><span class="cheat-badge">Quick live change</span><code class="cheat-command">kubectl delete pod my-pod</code><p class="cheat-description">Delete a pod so its controller can recreate it.</p><p class="cheat-note"><strong>Reboot note:</strong> this only restarts the live workload. It does not change the manifest, so any underlying config problem will return on the next restart.</p></div>
                     </div>
                 </article>
 
@@ -474,8 +474,8 @@
                     <div class="cheat-list">
                         <div class="cheat-item"><code class="cheat-command">kubectl get deployments</code><p class="cheat-description">List deployments in the current namespace.</p></div>
                         <div class="cheat-item"><code class="cheat-command">kubectl describe deployment web</code><p class="cheat-description">Show deployment strategy, replica sets, and events.</p></div>
-                        <div class="cheat-item"><code class="cheat-command">kubectl scale deployment web --replicas=3</code><p class="cheat-description">Scale a deployment to a target replica count.</p></div>
-                        <div class="cheat-item"><code class="cheat-command">kubectl set image deployment/web web=repo/web:v2</code><p class="cheat-description">Update a container image in a deployment.</p></div>
+                        <div class="cheat-item cheat-item-imperative"><span class="cheat-badge">Quick live change</span><code class="cheat-command">kubectl scale deployment web --replicas=3</code><p class="cheat-description">Scale a deployment to a target replica count.</p><p class="cheat-note"><strong>Persistence:</strong> update the deployment manifest or Helm/Kustomize values too, otherwise the next apply can overwrite the replica count.</p></div>
+                        <div class="cheat-item cheat-item-imperative"><span class="cheat-badge">Quick live change</span><code class="cheat-command">kubectl set image deployment/web web=repo/web:v2</code><p class="cheat-description">Update a container image in a deployment.</p><p class="cheat-note"><strong>Persistence:</strong> commit the new image tag to the manifest or GitOps source; otherwise a redeploy or sync can revert it.</p></div>
                         <div class="cheat-item"><code class="cheat-command">kubectl rollout status deployment/web</code><p class="cheat-description">Watch rollout progress.</p></div>
                         <div class="cheat-item"><code class="cheat-command">kubectl rollout undo deployment/web</code><p class="cheat-description">Roll back to the previous deployment revision.</p></div>
                     </div>
@@ -489,7 +489,7 @@
                         <div class="cheat-item"><code class="cheat-command">kubectl describe svc web</code><p class="cheat-description">Show selectors, endpoints, ports, and type details.</p></div>
                         <div class="cheat-item"><code class="cheat-command">kubectl get ingress</code><p class="cheat-description">List ingress resources.</p></div>
                         <div class="cheat-item"><code class="cheat-command">kubectl describe ingress web</code><p class="cheat-description">Inspect ingress rules, hosts, and backend mappings.</p></div>
-                        <div class="cheat-item"><code class="cheat-command">kubectl port-forward svc/web 8080:80</code><p class="cheat-description">Forward a local port to a service for testing.</p></div>
+                        <div class="cheat-item cheat-item-imperative"><span class="cheat-badge">Quick live change</span><code class="cheat-command">kubectl port-forward svc/web 8080:80</code><p class="cheat-description">Forward a local port to a service for testing.</p><p class="cheat-note"><strong>Session only:</strong> this is not persistent and stops when the process exits or your connection drops.</p></div>
                     </div>
                 </article>
 
@@ -511,9 +511,9 @@
                     <div class="cheat-list">
                         <div class="cheat-item"><code class="cheat-command">kubectl get configmap</code><p class="cheat-description">List ConfigMaps in the current namespace.</p></div>
                         <div class="cheat-item"><code class="cheat-command">kubectl describe configmap app-config</code><p class="cheat-description">Inspect stored key/value data and metadata.</p></div>
-                        <div class="cheat-item"><code class="cheat-command">kubectl create configmap app-config --from-file=./config/</code><p class="cheat-description">Create a ConfigMap from local files.</p></div>
+                        <div class="cheat-item cheat-item-imperative"><span class="cheat-badge">Quick live change</span><code class="cheat-command">kubectl create configmap app-config --from-file=./config/</code><p class="cheat-description">Create a ConfigMap from local files.</p><p class="cheat-note"><strong>Persistence:</strong> store the ConfigMap manifest or generator input in source control; recreating the cluster will otherwise lose it.</p></div>
                         <div class="cheat-item"><code class="cheat-command">kubectl get secret</code><p class="cheat-description">List secrets in the current namespace.</p></div>
-                        <div class="cheat-item"><code class="cheat-command">kubectl create secret generic db-creds --from-literal=username=admin --from-literal=password=change-me</code><p class="cheat-description">Create a generic secret from literal values.</p></div>
+                        <div class="cheat-item cheat-item-imperative"><span class="cheat-badge">Quick live change</span><code class="cheat-command">kubectl create secret generic db-creds --from-literal=username=admin --from-literal=password=change-me</code><p class="cheat-description">Create a generic secret from literal values.</p><p class="cheat-note"><strong>Persistence:</strong> keep the secret definition in your secret-management workflow, otherwise cluster rebuilds or GitOps syncs will not recreate it.</p></div>
                         <div class="cheat-item"><code class="cheat-command">kubectl get secret db-creds -o yaml</code><p class="cheat-description">Inspect the secret manifest, including base64-encoded data.</p><p class="cheat-note"><strong>Reminder:</strong> base64 is encoding, not encryption.</p></div>
                     </div>
                 </article>

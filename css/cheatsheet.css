@@ -255,6 +255,27 @@
     background: color-mix(in srgb, var(--color-surface) 88%, transparent);
 }
 
+.cheat-item-imperative {
+    border-color: color-mix(in srgb, var(--color-accent) 45%, var(--color-border));
+    background: linear-gradient(180deg,
+            color-mix(in srgb, var(--color-accent) 10%, var(--color-surface)) 0%,
+            color-mix(in srgb, var(--color-surface) 92%, transparent) 100%);
+}
+
+.cheat-badge {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 0.6rem;
+    padding: 0.28rem 0.55rem;
+    border-radius: 9999px;
+    background: color-mix(in srgb, var(--color-accent) 16%, transparent);
+    color: var(--color-accent);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
 .cheat-card[hidden],
 .cheat-item[hidden],
 .cheatsheet-section[hidden] {
