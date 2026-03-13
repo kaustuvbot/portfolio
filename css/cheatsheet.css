@@ -386,40 +386,6 @@
     color: var(--color-accent);
 }
 
-.cheatsheet-footer {
-    margin-top: 2.5rem;
-}
-
-.cheatsheet-footer-inner {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 1rem;
-    align-items: center;
-    padding: 1rem 1.2rem;
-    border-top: 1px solid color-mix(in srgb, var(--color-accent) 18%, var(--color-border));
-    color: var(--color-secondary-text);
-}
-
-.cheatsheet-footer-title {
-    color: var(--color-heading);
-    font-weight: 700;
-}
-
-.cheatsheet-footer-copy {
-    flex: 1 1 28rem;
-    line-height: 1.7;
-}
-
-.cheatsheet-footer-link {
-    color: var(--color-accent);
-    font-weight: 600;
-}
-
-.cheatsheet-footer-link:hover {
-    color: var(--color-accent-hover);
-}
-
 @media (max-width: 1024px) {
     .cheatsheet-hero-grid,
     .cheatsheet-shell,
