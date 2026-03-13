@@ -50,7 +50,7 @@ document.addEventListener('click', function (e) {
     const target = document.querySelector(href);
     if (target) {
         e.preventDefault();
-        const headerOffset = 80;
+        const headerOffset = 72;
         const elementPosition = target.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 

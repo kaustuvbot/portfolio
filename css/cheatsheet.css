@@ -1,7 +1,7 @@
 /* ==================== CHEATSHEET PAGE ==================== */
 
 .cheatsheet-main {
-    padding-top: 7rem;
+    padding-top: 6rem;
     padding-bottom: 5rem;
 }
 
@@ -18,7 +18,7 @@
 
 .cheatsheet-sidebar {
     position: sticky;
-    top: 6.75rem;
+    top: 5.75rem;
     display: grid;
     gap: 1rem;
 }
@@ -436,7 +436,7 @@
 
 @media (max-width: 768px) {
     .cheatsheet-main {
-        padding-top: 6.5rem;
+        padding-top: 5.5rem;
     }
 
     .cheatsheet-stat-grid {

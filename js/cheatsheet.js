@@ -6,6 +6,7 @@
     const status = document.getElementById('cheatsheet-search-status');
     const cards = Array.from(document.querySelectorAll('.cheat-card'));
     const sections = Array.from(document.querySelectorAll('.cheatsheet-section'));
+    let lastQuery = '';
 
     if (!searchInput || !cards.length || !sections.length) return;
 
@@ -55,6 +56,25 @@
         status.textContent = `${visibleItems} command${visibleItems === 1 ? '' : 's'} found for "${query}".`;
     }
 
+    function scrollToFirstVisibleResult(query) {
+        if (!query) return;
+
+        const firstVisibleCard = cardIndexes.find(({ element }) => !element.hidden)?.element;
+        if (!firstVisibleCard) return;
+
+        const rect = firstVisibleCard.getBoundingClientRect();
+        const headerOffset = 88;
+        const alreadyVisible = rect.top >= headerOffset && rect.bottom <= window.innerHeight;
+
+        if (!alreadyVisible) {
+            const top = rect.top + window.scrollY - headerOffset;
+            window.scrollTo({
+                top: Math.max(top, 0),
+                behavior: 'smooth'
+            });
+        }
+    }
+
     function applySearch(rawQuery) {
         const query = rawQuery.trim().toLowerCase();
         let visibleItems = 0;
@@ -86,6 +106,12 @@
         document.body.classList.toggle('search-active', Boolean(query));
         document.body.classList.toggle('search-empty', Boolean(query) && visibleItems === 0);
         setStatus(rawQuery.trim(), visibleItems);
+
+        if (query && query !== lastQuery && visibleItems > 0) {
+            scrollToFirstVisibleResult(query);
+        }
+
+        lastQuery = query;
     }
 
     searchInput.addEventListener('input', () => {
