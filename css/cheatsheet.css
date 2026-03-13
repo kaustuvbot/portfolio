@@ -16,6 +16,13 @@
     min-width: 0;
 }
 
+.cheatsheet-search-dock {
+    position: sticky;
+    top: 5.35rem;
+    z-index: 25;
+    margin-bottom: 1.5rem;
+}
+
 .cheatsheet-sidebar {
     position: sticky;
     top: 5.75rem;
@@ -138,11 +145,11 @@
 }
 
 .cheatsheet-search-panel {
-    margin-top: 1.75rem;
-    padding: 1.2rem;
+    padding: 1rem 1.1rem;
     border: 1px solid color-mix(in srgb, var(--color-accent) 18%, var(--color-border));
     border-radius: 1.25rem;
-    background: color-mix(in srgb, var(--color-surface) 92%, transparent);
+    background: color-mix(in srgb, var(--color-surface) 94%, transparent);
+    backdrop-filter: blur(14px);
     box-shadow: 0 14px 38px rgba(0, 0, 0, 0.22);
 }
 
@@ -398,6 +405,11 @@
         position: static;
         order: -1;
     }
+
+    .cheatsheet-search-dock {
+        position: sticky;
+        top: 5rem;
+    }
 }
 
 @media (max-width: 768px) {
@@ -407,6 +419,10 @@
 
     .cheatsheet-stat-grid {
         grid-template-columns: 1fr;
+    }
+
+    .cheatsheet-search-dock {
+        top: 4.75rem;
     }
 
     .cheatsheet-search-input-wrap {
