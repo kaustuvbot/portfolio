@@ -31,6 +31,7 @@
 }
 
 .cheatsheet-sidebar-panel {
+    min-width: 0;
     padding: 1.1rem;
     border: 1px solid color-mix(in srgb, var(--color-accent) 16%, var(--color-border));
     border-radius: 1.2rem;
@@ -59,6 +60,7 @@
     border-radius: 0.95rem;
     background: color-mix(in srgb, var(--color-background) 24%, var(--color-surface));
     color: var(--color-primary-text);
+    overflow-wrap: anywhere;
     transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
@@ -71,6 +73,7 @@
 .cheatsheet-sidebar-copy {
     color: var(--color-secondary-text);
     line-height: 1.7;
+    overflow-wrap: anywhere;
 }
 
 .cheatsheet-sidebar-list {
@@ -78,6 +81,10 @@
     padding-left: 1rem;
     color: var(--color-primary-text);
     line-height: 1.8;
+}
+
+.cheatsheet-sidebar-list li {
+    overflow-wrap: anywhere;
 }
 
 .cheatsheet-hero {
@@ -145,6 +152,7 @@
 }
 
 .cheatsheet-search-panel {
+    min-width: 0;
     padding: 1rem 1.1rem;
     border: 1px solid color-mix(in srgb, var(--color-accent) 18%, var(--color-border));
     border-radius: 1.25rem;
@@ -227,6 +235,7 @@
     color: var(--color-secondary-text);
     font-size: 0.9rem;
     line-height: 1.6;
+    overflow-wrap: anywhere;
 }
 
 .cheatsheet-search-status {
@@ -287,12 +296,14 @@
     display: flex;
     align-items: flex-start;
     gap: 0.75rem;
+    max-width: 100%;
     min-width: 14rem;
     padding: 1rem 1.1rem;
     border: 1px solid var(--color-border);
     border-radius: 1rem;
     background: color-mix(in srgb, var(--color-surface) 90%, transparent);
     color: var(--color-secondary-text);
+    overflow-wrap: anywhere;
 }
 
 .cheatsheet-grid {
@@ -308,6 +319,7 @@
 }
 
 .cheat-card {
+    min-width: 0;
     padding: 1.5rem;
     border: 1px solid var(--color-border);
     border-radius: 1.25rem;
@@ -380,6 +392,7 @@
 .cheat-description {
     color: var(--color-primary-text);
     line-height: 1.65;
+    overflow-wrap: anywhere;
 }
 
 .cheat-note {
@@ -387,6 +400,7 @@
     color: var(--color-secondary-text);
     font-size: 0.88rem;
     line-height: 1.6;
+    overflow-wrap: anywhere;
 }
 
 .cheat-note strong {
@@ -427,6 +441,10 @@
 
     .cheatsheet-search-input-wrap {
         flex-wrap: wrap;
+    }
+
+    .cheatsheet-search-meta {
+        flex-direction: column;
     }
 
     .cheatsheet-search-clear {

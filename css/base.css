@@ -11,6 +11,20 @@ body {
     overflow-x: hidden;
 }
 
+img,
+svg,
+video,
+canvas {
+    max-width: 100%;
+}
+
+input,
+textarea,
+select,
+button {
+    max-width: 100%;
+}
+
 .logo-static {
     color: #d4a574;
     transition: none !important;
