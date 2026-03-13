@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cheatsheet - Kaustuv Prajapati</title>
+    <link rel="icon" type="image/jpeg" href="icon.jpg">
+    <link rel="shortcut icon" type="image/jpeg" href="icon.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/orbit.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/cheatsheet.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        background: '#1a1b1e',
+                        surface: '#23252a',
+                        'surface-elevated': '#2c2f35',
+                        'primary-text': '#e8e9ed',
+                        'secondary-text': '#a8adb8',
+                        heading: '#f5f6f8',
+                        accent: '#d4a574',
+                        'accent-hover': '#c29560',
+                        'accent-soft': '#e8d4bc',
+                        tag: '#2f3238',
+                        'tag-text': '#d4a574',
+                        'border-color': '#363940',
+                        'card-bg': '#23252a',
+                    },
+                    boxShadow: {
+                        subtle: '0 8px 30px rgba(0,0,0,0.5)',
+                        'accent-glow': '0 0 0 2px rgba(212,165,116,0.15), 0 12px 40px rgba(212,165,116,0.15)',
+                        'card-hover': '0 12px 40px rgba(0,0,0,0.6)',
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body class="bg-background">
+    <div class="absolute inset-0 z-0 overflow-hidden">
+        <div class="floating-shape shape-1 w-[42rem] h-[42rem] top-[-15rem] left-[-22rem]"></div>
+        <div class="floating-shape shape-2 w-[34rem] h-[34rem] top-[35rem] right-[-16rem]"></div>
+        <div class="floating-shape shape-3 w-[28rem] h-[28rem] top-[95rem] left-[-12rem]"></div>
+        <div class="floating-dot dot-1 top-[10%] right-[12%] dot-large"></div>
+        <div class="floating-dot dot-4 top-[38%] left-[18%]"></div>
+        <div class="floating-dot dot-6 top-[58%] right-[25%]"></div>
+        <div class="floating-dot dot-9 top-[78%] left-[72%] dot-large"></div>
+        <div class="floating-medium medium-1 w-4 h-4 top-[20%] left-[76%]"></div>
+        <div class="floating-medium medium-3 w-5 h-5 top-[56%] right-[10%]"></div>
+    </div>
+
+    <header id="header"
+        class="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border-color transition-all duration-300">
+        <div class="container mx-auto px-4 max-w-7xl">
+            <nav class="flex items-center justify-between h-20">
+                <a href="index.html" class="text-2xl font-bold text-accent logo-static">
+                    Portfolio
+                </a>
+                <ul class="hidden md:flex items-center space-x-8 text-primary-text font-medium">
+                    <li><a href="index.html#home" class="hover:text-accent transition-colors">Home</a></li>
+                    <li><a href="#top" class="hover:text-accent transition-colors">Cheatsheet</a></li>
+                    <li><a href="#linux-git" class="hover:text-accent transition-colors">Linux + Git</a></li>
+                    <li><a href="#docker" class="hover:text-accent transition-colors">Docker</a></li>
+                    <li><a href="#kubernetes" class="hover:text-accent transition-colors">Kubernetes</a></li>
+                    <li><a href="index.html#contact" class="hover:text-accent transition-colors">Contact</a></li>
+                </ul>
+                <div class="flex items-center gap-3">
+                    <button id="theme-toggle" aria-label="Toggle color theme"
+                        class="p-2 rounded-full bg-surface border border-border-color hover:bg-surface-elevated transition-all">
+                        <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="text-accent">
+                            <circle cx="12" cy="12" r="5" />
+                            <line x1="12" y1="1" x2="12" y2="3" />
+                            <line x1="12" y1="21" x2="12" y2="23" />
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                            <line x1="1" y1="12" x2="3" y2="12" />
+                            <line x1="21" y1="12" x2="23" y2="12" />
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                        </svg>
+                        <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" class="text-accent hidden">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                        </svg>
+                    </button>
+                    <button id="mobile-menu-btn" class="md:hidden text-heading" aria-label="Toggle mobile menu">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="4" x2="20" y1="12" y2="12" />
+                            <line x1="4" x2="20" y1="6" y2="6" />
+                            <line x1="4" x2="20" y1="18" y2="18" />
+                        </svg>
+                    </button>
+                </div>
+            </nav>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-surface shadow-lg border-t border-border-color">
+            <ul class="flex flex-col items-center py-4 space-y-4 text-primary-text font-medium">
+                <li><a href="index.html#home" class="hover:text-accent transition-colors">Home</a></li>
+                <li><a href="#top" class="hover:text-accent transition-colors">Cheatsheet</a></li>
+                <li><a href="#linux-git" class="hover:text-accent transition-colors">Linux + Git</a></li>
+                <li><a href="#docker" class="hover:text-accent transition-colors">Docker</a></li>
+                <li><a href="#kubernetes" class="hover:text-accent transition-colors">Kubernetes</a></li>
+                <li><a href="index.html#contact" class="hover:text-accent transition-colors">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main id="top" class="container mx-auto px-4 relative z-10 max-w-7xl cheatsheet-main">
+        <section class="cheatsheet-hero">
+            <div class="cheatsheet-hero-grid">
+                <div class="fade-in">
+                    <span class="cheatsheet-badge">Command Reference</span>
+                    <h1 class="text-4xl md:text-6xl font-bold text-heading mt-5 mb-5">
+                        Linux, Git, Docker, and Kubernetes in one place.
+                    </h1>
+                    <p class="cheatsheet-lead">
+                        A compact operational reference for common terminal, version control, container, and cluster
+                        workflows. The layout mirrors the main portfolio theme, but the content is optimized for fast
+                        scanning during real work.
+                    </p>
+                    <div class="cheatsheet-quicknav">
+                        <a href="#linux-git" class="cheatsheet-chip">Linux + Git</a>
+                        <a href="#docker" class="cheatsheet-chip">Docker</a>
+                        <a href="#kubernetes" class="cheatsheet-chip">Kubernetes</a>
+                    </div>
+                    <div class="cheatsheet-search-panel slide-up">
+                        <label class="cheatsheet-search-label" for="cheatsheet-search">Search commands</label>
+                        <div class="cheatsheet-search-input-wrap">
+                            <svg class="cheatsheet-search-icon" xmlns="http://www.w3.org/2000/svg" width="18"
+                                height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="m21 21-4.3-4.3"></path>
+                            </svg>
+                            <input id="cheatsheet-search" class="cheatsheet-search-input" type="search"
+                                placeholder="Type anywhere to search commands instantly"
+                                aria-describedby="cheatsheet-search-help cheatsheet-search-status"
+                                autocomplete="off" spellcheck="false">
+                            <button id="cheatsheet-search-clear" class="cheatsheet-search-clear" type="button"
+                                aria-label="Clear search">Clear</button>
+                        </div>
+                        <div class="cheatsheet-search-meta">
+                            <p id="cheatsheet-search-help" class="cheatsheet-search-help">
+                                Start typing anywhere on the page. Results update as you type. No Enter needed.
+                            </p>
+                            <p id="cheatsheet-search-status" class="cheatsheet-search-status" aria-live="polite">
+                                Showing all commands.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="cheatsheet-stat-grid slide-up">
+                    <div class="cheatsheet-stat">
+                        <span class="cheatsheet-stat-value">3</span>
+                        <span class="cheatsheet-stat-label">tool families grouped by workflow</span>
+                    </div>
+                    <div class="cheatsheet-stat">
+                        <span class="cheatsheet-stat-value">20+</span>
+                        <span class="cheatsheet-stat-label">practical command clusters</span>
+                    </div>
+                    <div class="cheatsheet-stat">
+                        <span class="cheatsheet-stat-value">Fast</span>
+                        <span class="cheatsheet-stat-label">scan-friendly layout for desktop and mobile</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="linux-git" class="cheatsheet-section">
+            <div class="cheatsheet-section-head">
+                <div class="cheatsheet-section-copy">
+                    <span class="cheatsheet-kicker">Linux + Git</span>
+                    <h2 class="section-title !text-left !mb-3">Shell work, file inspection, and source control</h2>
+                    <p class="text-primary-text leading-relaxed">
+                        This section combines everyday terminal commands with the Git commands most often used during
+                        local development, review, recovery, and collaboration.
+                    </p>
+                </div>
+                <div class="cheatsheet-section-meta">
+                    <span class="text-accent font-semibold">Focus</span>
+                    <span>Navigation, search, process inspection, branching, commits, history, and remote sync.</span>
+                </div>
+            </div>
+
+            <div class="cheatsheet-grid">
+                <article class="cheat-card reveal">
+                    <h3 class="cheat-card-title">Navigation and File Operations</h3>
+                    <p class="cheat-card-copy">Move around quickly and create, copy, or remove files safely.</p>
+                    <div class="cheat-list">
+                        <div class="cheat-item"><code class="cheat-command">pwd</code><p class="cheat-description">Print the current working directory.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">ls -lah</code><p class="cheat-description">List files with permissions, sizes, and hidden entries.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">cd /path/to/dir</code><p class="cheat-description">Change into a target directory.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">mkdir -p app/config</code><p class="cheat-description">Create nested directories in one command.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">cp -r src/ backup/</code><p class="cheat-description">Copy a directory recursively.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">mv old.txt new.txt</code><p class="cheat-description">Move or rename a file.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">rm -i file.txt</code><p class="cheat-description">Remove a file with confirmation.</p><p class="cheat-note"><strong>Safer default:</strong> prefer `-i` unless you are fully sure.</p></div>
+                    </div>
+                </article>
+
+                <article class="cheat-card reveal">
+                    <h3 class="cheat-card-title">Inspection and Search</h3>
+                    <p class="cheat-card-copy">Inspect content, compare files, and search code or logs efficiently.</p>
+                    <div class="cheat-list">
+                        <div class="cheat-item"><code class="cheat-command">cat file.txt</code><p class="cheat-description">Print a small file to stdout.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">less /var/log/syslog</code><p class="cheat-description">Open a long file with paging and search.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">tail -f app.log</code><p class="cheat-description">Follow a log file in real time.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">find . -name "*.yaml"</code><p class="cheat-description">Find matching files under the current directory.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">grep -R "DATABASE_URL" .</code><p class="cheat-description">Recursively search file contents for a string.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">diff -u old.conf new.conf</code><p class="cheat-description">Show a unified diff between two files.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">du -sh *</code><p class="cheat-description">Summarize directory sizes in the current path.</p></div>
+                    </div>
+                </article>
+
+                <article class="cheat-card reveal">
+                    <h3 class="cheat-card-title">Permissions and Processes</h3>
+                    <p class="cheat-card-copy">Check ownership, adjust file modes, and inspect running processes.</p>
+                    <div class="cheat-list">
+                        <div class="cheat-item"><code class="cheat-command">chmod 644 file.txt</code><p class="cheat-description">Set owner read/write and group/world read permissions.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">chmod +x script.sh</code><p class="cheat-description">Make a script executable.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">chown user:group file.txt</code><p class="cheat-description">Change file owner and group.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">ps aux | grep nginx</code><p class="cheat-description">Search running processes for a service.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">top</code><p class="cheat-description">Monitor CPU, memory, and active processes interactively.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">kill -15 1234</code><p class="cheat-description">Ask a process to terminate gracefully.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">kill -9 1234</code><p class="cheat-description">Force-kill a stuck process.</p><p class="cheat-note"><strong>Use with care:</strong> `-9` skips graceful shutdown hooks.</p></div>
+                    </div>
+                </article>
+
+                <article class="cheat-card reveal">
+                    <h3 class="cheat-card-title">Networking and System Info</h3>
+                    <p class="cheat-card-copy">Quick checks for connectivity, open ports, and machine state.</p>
+                    <div class="cheat-list">
+                        <div class="cheat-item"><code class="cheat-command">uname -a</code><p class="cheat-description">Show kernel and system details.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">df -h</code><p class="cheat-description">Display disk usage in human-readable units.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">free -h</code><p class="cheat-description">Show memory and swap usage.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">ip addr</code><p class="cheat-description">List network interfaces and IP addresses.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">ss -tulpn</code><p class="cheat-description">Show listening sockets and owning processes.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">curl -I https://example.com</code><p class="cheat-description">Fetch response headers for a URL.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">ping -c 4 8.8.8.8</code><p class="cheat-description">Send a fixed number of ICMP echo requests.</p></div>
+                    </div>
+                </article>
+
+                <article class="cheat-card reveal">
+                    <h3 class="cheat-card-title">Git Setup and Daily Status</h3>
+                    <p class="cheat-card-copy">Check repository state and establish your local identity.</p>
+                    <div class="cheat-list">
+                        <div class="cheat-item"><code class="cheat-command">git config --global user.name "Your Name"</code><p class="cheat-description">Set the default author name for commits.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">git config --global user.email "you@example.com"</code><p class="cheat-description">Set the default author email.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">git clone https://github.com/org/repo.git</code><p class="cheat-description">Clone a remote repository locally.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">git status</code><p class="cheat-description">Show branch, staged, unstaged, and untracked changes.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">git status --short</code><p class="cheat-description">Use the condensed status format for quick scanning.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">git remote -v</code><p class="cheat-description">List configured remotes and their URLs.</p></div>
+                    </div>
+                </article>
+
+                <article class="cheat-card reveal">
+                    <h3 class="cheat-card-title">Branching and Switching</h3>
+                    <p class="cheat-card-copy">Move between features, create branches, and keep them current.</p>
+                    <div class="cheat-list">
+                        <div class="cheat-item"><code class="cheat-command">git branch</code><p class="cheat-description">List local branches.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">git branch -a</code><p class="cheat-description">List local and remote-tracking branches.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">git switch main</code><p class="cheat-description">Switch to an existing branch.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">git switch -c feature/cheatsheet</code><p class="cheat-description">Create and switch to a new branch.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">git fetch origin</code><p class="cheat-description">Update remote-tracking references without merging.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">git pull --rebase origin main</code><p class="cheat-description">Replay local commits on top of updated remote history.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">git branch -d feature/old-branch</code><p class="cheat-description">Delete a merged local branch.</p></div>
+                    </div>
+                </article>
+
+                <article class="cheat-card reveal">
+                    <h3 class="cheat-card-title">Staging and Commits</h3>
+                    <p class="cheat-card-copy">Stage intent clearly and keep local history readable.</p>
+                    <div class="cheat-list">
+                        <div class="cheat-item"><code class="cheat-command">git add file.txt</code><p class="cheat-description">Stage one file for the next commit.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">git add .</code><p class="cheat-description">Stage tracked and untracked changes under the current directory.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">git add -p</code><p class="cheat-description">Interactively stage only the hunks you want.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">git restore --staged file.txt</code><p class="cheat-description">Unstage a file while keeping its working changes.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">git commit -m "Add cheatsheet page"</code><p class="cheat-description">Create a commit with a message.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">git commit --amend</code><p class="cheat-description">Update the most recent commit.</p><p class="cheat-note"><strong>Caution:</strong> avoid amending commits that are already shared.</p></div>
+                    </div>
+                </article>
+
+                <article class="cheat-card reveal">
+                    <h3 class="cheat-card-title">History, Diff, and Recovery</h3>
+                    <p class="cheat-card-copy">Inspect changes over time and recover from common mistakes.</p>
+                    <div class="cheat-list">
+                        <div class="cheat-item"><code class="cheat-command">git log --oneline --graph --decorate -20</code><p class="cheat-description">Show a compact graphical view of recent history.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">git diff</code><p class="cheat-description">Compare working tree changes against the index.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">git diff --staged</code><p class="cheat-description">Compare staged changes against the last commit.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">git show HEAD</code><p class="cheat-description">Display the latest commit and patch.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">git restore file.txt</code><p class="cheat-description">Discard unstaged changes in a file.</p><p class="cheat-note"><strong>Destructive:</strong> this replaces the working copy of that file.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">git reflog</code><p class="cheat-description">Find recent branch and HEAD movements for recovery.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">git reset --soft HEAD~1</code><p class="cheat-description">Undo the last commit but keep changes staged.</p></div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="docker" class="cheatsheet-section">
+            <div class="cheatsheet-section-head">
+                <div class="cheatsheet-section-copy">
+                    <span class="cheatsheet-kicker">Docker</span>
+                    <h2 class="section-title !text-left !mb-3">Images, containers, logs, and cleanup workflows</h2>
+                    <p class="text-primary-text leading-relaxed">
+                        Use these commands for common image builds, runtime inspection, container debugging, and local
+                        environment cleanup.
+                    </p>
+                </div>
+                <div class="cheatsheet-section-meta">
+                    <span class="text-accent font-semibold">Focus</span>
+                    <span>Build, run, inspect, debug, manage volumes, and work with Compose.</span>
+                </div>
+            </div>
+
+            <div class="cheatsheet-grid">
+                <article class="cheat-card reveal">
+                    <h3 class="cheat-card-title">Docker Basics</h3>
+                    <p class="cheat-card-copy">Start with version checks, image builds, and one-off runs.</p>
+                    <div class="cheat-list">
+                        <div class="cheat-item"><code class="cheat-command">docker version</code><p class="cheat-description">Show Docker client and server versions.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">docker info</code><p class="cheat-description">Display engine configuration and runtime details.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">docker build -t myapp:latest .</code><p class="cheat-description">Build an image from the current directory.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">docker run --rm alpine:latest echo "hello"</code><p class="cheat-description">Run a container once and remove it after exit.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">docker login</code><p class="cheat-description">Authenticate to a container registry.</p></div>
+                    </div>
+                </article>
+
+                <article class="cheat-card reveal">
+                    <h3 class="cheat-card-title">Images</h3>
+                    <p class="cheat-card-copy">Inspect and publish images with tags that match deployment intent.</p>
+                    <div class="cheat-list">
+                        <div class="cheat-item"><code class="cheat-command">docker images</code><p class="cheat-description">List images stored locally.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">docker image inspect myapp:latest</code><p class="cheat-description">Show image metadata and configuration JSON.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">docker tag myapp:latest registry.example.com/myapp:v1</code><p class="cheat-description">Create a new tag for an existing image.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">docker push registry.example.com/myapp:v1</code><p class="cheat-description">Push a tagged image to a registry.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">docker pull nginx:stable</code><p class="cheat-description">Download an image from a registry.</p></div>
+                    </div>
+                </article>
+
+                <article class="cheat-card reveal">
+                    <h3 class="cheat-card-title">Containers</h3>
+                    <p class="cheat-card-copy">Run, stop, and remove containers without losing track of state.</p>
+                    <div class="cheat-list">
+                        <div class="cheat-item"><code class="cheat-command">docker ps</code><p class="cheat-description">List running containers.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">docker ps -a</code><p class="cheat-description">List all containers, including stopped ones.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">docker run -d --name web -p 8080:80 nginx</code><p class="cheat-description">Run a container in detached mode with a port mapping.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">docker stop web</code><p class="cheat-description">Stop a running container gracefully.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">docker start web</code><p class="cheat-description">Start an existing stopped container.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">docker rm web</code><p class="cheat-description">Remove a stopped container.</p></div>
+                    </div>
+                </article>
+
+                <article class="cheat-card reveal">
+                    <h3 class="cheat-card-title">Logs and Inspection</h3>
+                    <p class="cheat-card-copy">See why a container failed and inspect how it was configured.</p>
+                    <div class="cheat-list">
+                        <div class="cheat-item"><code class="cheat-command">docker logs web</code><p class="cheat-description">Print container logs.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">docker logs -f web</code><p class="cheat-description">Follow logs in real time.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">docker inspect web</code><p class="cheat-description">Show full container configuration and state.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">docker port web</code><p class="cheat-description">List port mappings for a container.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">docker stats</code><p class="cheat-description">Stream CPU, memory, and network usage for running containers.</p></div>
+                    </div>
+                </article>
+
+                <article class="cheat-card reveal">
+                    <h3 class="cheat-card-title">Exec and Debugging</h3>
+                    <p class="cheat-card-copy">Enter a running container and validate its filesystem or network behavior.</p>
+                    <div class="cheat-list">
+                        <div class="cheat-item"><code class="cheat-command">docker exec -it web sh</code><p class="cheat-description">Open an interactive shell in a running container.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">docker exec -it web env</code><p class="cheat-description">Print container environment variables.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">docker cp web:/usr/share/nginx/html ./html-backup</code><p class="cheat-description">Copy files from a container to the host.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">docker top web</code><p class="cheat-description">Show processes running inside a container.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">docker diff web</code><p class="cheat-description">Show filesystem changes made since the container started.</p></div>
+                    </div>
+                </article>
+
+                <article class="cheat-card reveal">
+                    <h3 class="cheat-card-title">Volumes and Cleanup</h3>
+                    <p class="cheat-card-copy">Manage persisted data and remove unused local resources deliberately.</p>
+                    <div class="cheat-list">
+                        <div class="cheat-item"><code class="cheat-command">docker volume ls</code><p class="cheat-description">List Docker-managed volumes.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">docker volume inspect myvolume</code><p class="cheat-description">Show mountpoint and metadata for a volume.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">docker system df</code><p class="cheat-description">Summarize disk usage by images, containers, and volumes.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">docker image prune</code><p class="cheat-description">Remove dangling images.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">docker container prune</code><p class="cheat-description">Remove all stopped containers.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">docker system prune -a</code><p class="cheat-description">Remove unused images, containers, networks, and cache.</p><p class="cheat-note"><strong>Destructive:</strong> review what counts as unused before running with `-a`.</p></div>
+                    </div>
+                </article>
+
+                <article class="cheat-card reveal">
+                    <h3 class="cheat-card-title">Compose Essentials</h3>
+                    <p class="cheat-card-copy">Operate multi-container local environments with a single manifest.</p>
+                    <div class="cheat-list">
+                        <div class="cheat-item"><code class="cheat-command">docker compose up -d</code><p class="cheat-description">Start services in detached mode.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">docker compose down</code><p class="cheat-description">Stop and remove services, networks, and default resources.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">docker compose ps</code><p class="cheat-description">List services and their container state.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">docker compose logs -f api</code><p class="cheat-description">Follow logs for a named service.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">docker compose exec api sh</code><p class="cheat-description">Open a shell in a running Compose service.</p></div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="kubernetes" class="cheatsheet-section">
+            <div class="cheatsheet-section-head">
+                <div class="cheatsheet-section-copy">
+                    <span class="cheatsheet-kicker">Kubernetes</span>
+                    <h2 class="section-title !text-left !mb-3">Cluster context, workloads, and troubleshooting flow</h2>
+                    <p class="text-primary-text leading-relaxed">
+                        These commands cover the most common `kubectl` workflows for switching contexts, inspecting
+                        workloads, debugging pods, managing rollouts, and handling configuration resources.
+                    </p>
+                </div>
+                <div class="cheatsheet-section-meta">
+                    <span class="text-accent font-semibold">Focus</span>
+                    <span>Context, namespaces, pods, deployments, services, logs, configuration, and rollout control.</span>
+                </div>
+            </div>
+
+            <div class="cheatsheet-grid">
+                <article class="cheat-card reveal">
+                    <h3 class="cheat-card-title">Cluster and Context</h3>
+                    <p class="cheat-card-copy">Validate which cluster and namespace you are targeting before changing anything.</p>
+                    <div class="cheat-list">
+                        <div class="cheat-item"><code class="cheat-command">kubectl config get-contexts</code><p class="cheat-description">List available kubeconfig contexts.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">kubectl config current-context</code><p class="cheat-description">Show the active context.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">kubectl config use-context my-cluster</code><p class="cheat-description">Switch to a different context.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">kubectl cluster-info</code><p class="cheat-description">Display the control plane and core service endpoints.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">kubectl get nodes -o wide</code><p class="cheat-description">List nodes with extended details.</p></div>
+                    </div>
+                </article>
+
+                <article class="cheat-card reveal">
+                    <h3 class="cheat-card-title">Namespaces</h3>
+                    <p class="cheat-card-copy">Separate environments and scope commands to the correct namespace.</p>
+                    <div class="cheat-list">
+                        <div class="cheat-item"><code class="cheat-command">kubectl get ns</code><p class="cheat-description">List namespaces.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">kubectl create namespace staging</code><p class="cheat-description">Create a namespace.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">kubectl config set-context --current --namespace=staging</code><p class="cheat-description">Set the default namespace for the current context.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">kubectl get all -n staging</code><p class="cheat-description">List common workload resources in one namespace.</p></div>
+                    </div>
+                </article>
+
+                <article class="cheat-card reveal">
+                    <h3 class="cheat-card-title">Pods</h3>
+                    <p class="cheat-card-copy">Inspect pod state, scheduling, and image usage quickly.</p>
+                    <div class="cheat-list">
+                        <div class="cheat-item"><code class="cheat-command">kubectl get pods</code><p class="cheat-description">List pods in the current namespace.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">kubectl get pods -A</code><p class="cheat-description">List pods across all namespaces.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">kubectl get pods -o wide</code><p class="cheat-description">Show nodes, pod IPs, and extra scheduling details.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">kubectl describe pod my-pod</code><p class="cheat-description">Inspect events, conditions, volumes, and container state.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">kubectl delete pod my-pod</code><p class="cheat-description">Delete a pod so its controller can recreate it.</p><p class="cheat-note"><strong>Operational note:</strong> safe for managed workloads, but avoid on one-off pods unless intentional.</p></div>
+                    </div>
+                </article>
+
+                <article class="cheat-card reveal">
+                    <h3 class="cheat-card-title">Deployments and Rollouts</h3>
+                    <p class="cheat-card-copy">Update workloads and monitor rollout health without losing history.</p>
+                    <div class="cheat-list">
+                        <div class="cheat-item"><code class="cheat-command">kubectl get deployments</code><p class="cheat-description">List deployments in the current namespace.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">kubectl describe deployment web</code><p class="cheat-description">Show deployment strategy, replica sets, and events.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">kubectl scale deployment web --replicas=3</code><p class="cheat-description">Scale a deployment to a target replica count.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">kubectl set image deployment/web web=repo/web:v2</code><p class="cheat-description">Update a container image in a deployment.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">kubectl rollout status deployment/web</code><p class="cheat-description">Watch rollout progress.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">kubectl rollout undo deployment/web</code><p class="cheat-description">Roll back to the previous deployment revision.</p></div>
+                    </div>
+                </article>
+
+                <article class="cheat-card reveal">
+                    <h3 class="cheat-card-title">Services and Ingress</h3>
+                    <p class="cheat-card-copy">Trace how traffic is exposed and routed through the cluster.</p>
+                    <div class="cheat-list">
+                        <div class="cheat-item"><code class="cheat-command">kubectl get svc</code><p class="cheat-description">List services in the current namespace.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">kubectl describe svc web</code><p class="cheat-description">Show selectors, endpoints, ports, and type details.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">kubectl get ingress</code><p class="cheat-description">List ingress resources.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">kubectl describe ingress web</code><p class="cheat-description">Inspect ingress rules, hosts, and backend mappings.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">kubectl port-forward svc/web 8080:80</code><p class="cheat-description">Forward a local port to a service for testing.</p></div>
+                    </div>
+                </article>
+
+                <article class="cheat-card reveal">
+                    <h3 class="cheat-card-title">Logs and Exec</h3>
+                    <p class="cheat-card-copy">Investigate application behavior from inside the cluster.</p>
+                    <div class="cheat-list">
+                        <div class="cheat-item"><code class="cheat-command">kubectl logs my-pod</code><p class="cheat-description">Print logs from the first container in a pod.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">kubectl logs -f my-pod</code><p class="cheat-description">Follow pod logs in real time.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">kubectl logs my-pod -c app</code><p class="cheat-description">Read logs from a specific container in a multi-container pod.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">kubectl exec -it my-pod -- sh</code><p class="cheat-description">Open an interactive shell inside a container.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">kubectl top pod</code><p class="cheat-description">Show pod CPU and memory usage if metrics-server is installed.</p></div>
+                    </div>
+                </article>
+
+                <article class="cheat-card reveal">
+                    <h3 class="cheat-card-title">ConfigMaps and Secrets</h3>
+                    <p class="cheat-card-copy">Handle application configuration separately from image content.</p>
+                    <div class="cheat-list">
+                        <div class="cheat-item"><code class="cheat-command">kubectl get configmap</code><p class="cheat-description">List ConfigMaps in the current namespace.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">kubectl describe configmap app-config</code><p class="cheat-description">Inspect stored key/value data and metadata.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">kubectl create configmap app-config --from-file=./config/</code><p class="cheat-description">Create a ConfigMap from local files.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">kubectl get secret</code><p class="cheat-description">List secrets in the current namespace.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">kubectl create secret generic db-creds --from-literal=username=admin --from-literal=password=change-me</code><p class="cheat-description">Create a generic secret from literal values.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">kubectl get secret db-creds -o yaml</code><p class="cheat-description">Inspect the secret manifest, including base64-encoded data.</p><p class="cheat-note"><strong>Reminder:</strong> base64 is encoding, not encryption.</p></div>
+                    </div>
+                </article>
+
+                <article class="cheat-card reveal">
+                    <h3 class="cheat-card-title">Apply and Troubleshooting</h3>
+                    <p class="cheat-card-copy">Validate manifests, detect drift, and inspect cluster events during failures.</p>
+                    <div class="cheat-list">
+                        <div class="cheat-item"><code class="cheat-command">kubectl apply -f deployment.yaml</code><p class="cheat-description">Create or update resources from a manifest.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">kubectl apply -k overlays/prod</code><p class="cheat-description">Apply resources managed with Kustomize.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">kubectl diff -f deployment.yaml</code><p class="cheat-description">Preview changes before applying a manifest.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">kubectl get events --sort-by=.metadata.creationTimestamp</code><p class="cheat-description">Review recent cluster events in chronological order.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">kubectl api-resources</code><p class="cheat-description">List available resource types exposed by the API server.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">kubectl explain deployment.spec.template.spec.containers</code><p class="cheat-description">Read built-in schema help for a manifest field path.</p></div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <div class="cheatsheet-footer-note">
+            This first release is intentionally focused on common operational commands. If you want a second pass, the
+            next useful additions would be Terraform, Helm, AWS CLI, and a copy-to-clipboard interaction per command.
+        </div>
+    </main>
+
+    <script src="js/navigation.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/cheatsheet.js"></script>
+</body>
+
+</html>

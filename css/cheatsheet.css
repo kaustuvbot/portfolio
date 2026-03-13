@@ -1,0 +1,341 @@
+/* ==================== CHEATSHEET PAGE ==================== */
+
+.cheatsheet-main {
+    padding-top: 7rem;
+    padding-bottom: 5rem;
+}
+
+.cheatsheet-hero {
+    position: relative;
+    padding: 2rem 0 3rem;
+}
+
+.cheatsheet-hero-grid {
+    display: grid;
+    gap: 2rem;
+    align-items: start;
+}
+
+.cheatsheet-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.9rem;
+    border-radius: 9999px;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 25%, transparent);
+    background: var(--color-tag);
+    color: var(--color-tag-text);
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.cheatsheet-lead {
+    max-width: 42rem;
+    color: var(--color-primary-text);
+    line-height: 1.8;
+}
+
+.cheatsheet-stat-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.cheatsheet-stat {
+    padding: 1.2rem;
+    border-radius: 1rem;
+    border: 1px solid var(--color-border);
+    background: color-mix(in srgb, var(--color-surface) 86%, transparent);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
+}
+
+.cheatsheet-stat-value {
+    display: block;
+    margin-bottom: 0.35rem;
+    color: var(--color-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.cheatsheet-stat-label {
+    color: var(--color-secondary-text);
+    font-size: 0.9rem;
+}
+
+.cheatsheet-quicknav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin-top: 2rem;
+}
+
+.cheatsheet-search-panel {
+    margin-top: 1.75rem;
+    padding: 1.2rem;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 18%, var(--color-border));
+    border-radius: 1.25rem;
+    background: color-mix(in srgb, var(--color-surface) 92%, transparent);
+    box-shadow: 0 14px 38px rgba(0, 0, 0, 0.22);
+}
+
+.cheatsheet-search-label {
+    display: inline-block;
+    margin-bottom: 0.75rem;
+    color: var(--color-heading);
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.cheatsheet-search-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    background: color-mix(in srgb, var(--color-background) 42%, var(--color-surface));
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cheatsheet-search-input-wrap:focus-within {
+    border-color: color-mix(in srgb, var(--color-accent) 48%, var(--color-border));
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-accent) 12%, transparent);
+}
+
+.cheatsheet-search-icon {
+    flex: 0 0 auto;
+    color: var(--color-accent);
+}
+
+.cheatsheet-search-input {
+    flex: 1 1 auto;
+    min-width: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: var(--color-primary-text);
+    font-size: 1rem;
+}
+
+.cheatsheet-search-input::placeholder {
+    color: var(--color-secondary-text);
+}
+
+.cheatsheet-search-clear {
+    flex: 0 0 auto;
+    padding: 0.5rem 0.8rem;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 20%, var(--color-border));
+    border-radius: 9999px;
+    background: color-mix(in srgb, var(--color-surface-elevated) 88%, transparent);
+    color: var(--color-primary-text);
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.cheatsheet-search-clear:hover {
+    transform: translateY(-1px);
+    color: var(--color-accent);
+    border-color: color-mix(in srgb, var(--color-accent) 40%, var(--color-border));
+}
+
+.cheatsheet-search-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.85rem;
+    margin-top: 0.8rem;
+}
+
+.cheatsheet-search-help,
+.cheatsheet-search-status {
+    color: var(--color-secondary-text);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.cheatsheet-search-status {
+    color: var(--color-accent);
+    font-weight: 500;
+}
+
+.cheatsheet-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.85rem 1.1rem;
+    border-radius: 9999px;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 20%, var(--color-border));
+    background: color-mix(in srgb, var(--color-surface) 92%, transparent);
+    color: var(--color-primary-text);
+    font-weight: 500;
+    transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.cheatsheet-chip:hover {
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--color-accent) 45%, var(--color-border));
+    color: var(--color-accent);
+}
+
+.cheatsheet-section {
+    padding: 2rem 0 1rem;
+}
+
+.cheatsheet-section-head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.cheatsheet-section-copy {
+    max-width: 44rem;
+}
+
+.cheatsheet-kicker {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    color: var(--color-accent);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.cheatsheet-section-meta {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    min-width: 14rem;
+    padding: 1rem 1.1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    background: color-mix(in srgb, var(--color-surface) 90%, transparent);
+    color: var(--color-secondary-text);
+}
+
+.cheatsheet-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+}
+
+.cheat-card {
+    padding: 1.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: 1.25rem;
+    background: color-mix(in srgb, var(--color-card-bg) 94%, transparent);
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.24);
+}
+
+.cheat-card-title {
+    margin-bottom: 0.35rem;
+    color: var(--color-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+.cheat-card-copy {
+    margin-bottom: 1rem;
+    color: var(--color-secondary-text);
+    line-height: 1.65;
+}
+
+.cheat-list {
+    display: grid;
+    gap: 0.9rem;
+}
+
+.cheat-item {
+    padding: 0.9rem 1rem;
+    border-radius: 0.95rem;
+    border: 1px solid color-mix(in srgb, var(--color-border) 75%, transparent);
+    background: color-mix(in srgb, var(--color-surface) 88%, transparent);
+}
+
+.cheat-card[hidden],
+.cheat-item[hidden],
+.cheatsheet-section[hidden] {
+    display: none !important;
+}
+
+.cheat-command {
+    display: block;
+    overflow-x: auto;
+    margin-bottom: 0.4rem;
+    color: var(--color-accent-soft);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    white-space: nowrap;
+}
+
+.cheat-description {
+    color: var(--color-primary-text);
+    line-height: 1.65;
+}
+
+.cheat-note {
+    margin-top: 0.45rem;
+    color: var(--color-secondary-text);
+    font-size: 0.88rem;
+    line-height: 1.6;
+}
+
+.cheat-note strong {
+    color: var(--color-accent);
+}
+
+.cheatsheet-footer-note {
+    margin-top: 3rem;
+    padding: 1.25rem 1.4rem;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 18%, var(--color-border));
+    border-radius: 1rem;
+    background: color-mix(in srgb, var(--color-surface) 90%, transparent);
+    color: var(--color-secondary-text);
+    line-height: 1.7;
+}
+
+@media (max-width: 1024px) {
+    .cheatsheet-hero-grid,
+    .cheatsheet-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .cheatsheet-main {
+        padding-top: 6.5rem;
+    }
+
+    .cheatsheet-stat-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cheatsheet-search-input-wrap {
+        flex-wrap: wrap;
+    }
+
+    .cheatsheet-search-clear {
+        width: 100%;
+    }
+
+    .cheatsheet-chip {
+        width: 100%;
+    }
+
+    .cheatsheet-section-meta {
+        min-width: 0;
+    }
+
+    .cheat-card,
+    .cheat-item {
+        padding: 1.1rem;
+    }
+
+    .cheat-command {
+        white-space: pre-wrap;
+        word-break: break-word;
+    }
+}

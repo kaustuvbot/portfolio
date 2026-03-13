@@ -23,6 +23,8 @@ const header = document.getElementById('header');
 let lastScroll = 0;
 
 window.addEventListener('scroll', () => {
+    if (!header) return;
+
     const currentScroll = window.pageYOffset;
 
     if (currentScroll > 50) {
@@ -66,6 +68,8 @@ window.addEventListener('scroll', () => {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('nav a[href^="#"]');
 
+    if (!sections.length || !navLinks.length) return;
+
     let current = '';
 
     sections.forEach(section => {
@@ -87,6 +91,8 @@ window.addEventListener('scroll', () => {
 // ==================== KEYBOARD NAVIGATION ====================
 
 document.addEventListener('keydown', (e) => {
+    if (document.getElementById('cheatsheet-search')) return;
+
     if (e.key === '/' && !e.ctrlKey && !e.metaKey) {
         const firstInput = document.querySelector('input[type="text"], input[type="email"]');
         if (firstInput && document.activeElement !== firstInput) {
