@@ -74,6 +74,7 @@
                     <li><a href="#linux-git" class="hover:text-accent transition-colors">Linux + Git</a></li>
                     <li><a href="#docker" class="hover:text-accent transition-colors">Docker</a></li>
                     <li><a href="#kubernetes" class="hover:text-accent transition-colors">Kubernetes</a></li>
+                    <li><a href="#terraform-plan" class="hover:text-accent transition-colors">Terraform Plan</a></li>
                     <li><a href="index.html#contact" class="hover:text-accent transition-colors">Contact</a></li>
                 </ul>
                 <div class="flex items-center gap-3">
@@ -116,6 +117,7 @@
                 <li><a href="#linux-git" class="hover:text-accent transition-colors">Linux + Git</a></li>
                 <li><a href="#docker" class="hover:text-accent transition-colors">Docker</a></li>
                 <li><a href="#kubernetes" class="hover:text-accent transition-colors">Kubernetes</a></li>
+                <li><a href="#terraform-plan" class="hover:text-accent transition-colors">Terraform Plan</a></li>
                 <li><a href="index.html#contact" class="hover:text-accent transition-colors">Contact</a></li>
             </ul>
         </div>
@@ -138,6 +140,7 @@
                         <a href="#linux-git" class="cheatsheet-chip">Linux + Git</a>
                         <a href="#docker" class="cheatsheet-chip">Docker</a>
                         <a href="#kubernetes" class="cheatsheet-chip">Kubernetes</a>
+                        <a href="#terraform-plan" class="cheatsheet-chip">Terraform Plan</a>
                     </div>
                     <div class="cheatsheet-search-panel slide-up">
                         <label class="cheatsheet-search-label" for="cheatsheet-search">Search commands</label>
@@ -182,6 +185,34 @@
             </div>
         </section>
 
+        <div class="cheatsheet-shell">
+            <aside class="cheatsheet-sidebar slide-up">
+                <div class="cheatsheet-sidebar-panel">
+                    <p class="cheatsheet-sidebar-title">Navigate</p>
+                    <nav class="cheatsheet-sidebar-nav" aria-label="Cheatsheet sidebar">
+                        <a href="#top" class="cheatsheet-sidebar-link">Overview</a>
+                        <a href="#linux-git" class="cheatsheet-sidebar-link">Linux + Git</a>
+                        <a href="#docker" class="cheatsheet-sidebar-link">Docker</a>
+                        <a href="#kubernetes" class="cheatsheet-sidebar-link">Kubernetes</a>
+                        <a href="#terraform-plan" class="cheatsheet-sidebar-link">Terraform Plan</a>
+                    </nav>
+                </div>
+
+                <div class="cheatsheet-sidebar-panel">
+                    <p class="cheatsheet-sidebar-title">Terraform Next</p>
+                    <p class="cheatsheet-sidebar-copy">
+                        Planned next as a compact section, not another long wall of commands.
+                    </p>
+                    <ul class="cheatsheet-sidebar-list">
+                        <li>`init`, `validate`, `fmt`</li>
+                        <li>`plan`, `apply`, `destroy`</li>
+                        <li>state and output commands</li>
+                        <li>workspace and targeting notes</li>
+                    </ul>
+                </div>
+            </aside>
+
+            <div class="cheatsheet-content">
         <section id="linux-git" class="cheatsheet-section">
             <div class="cheatsheet-section-head">
                 <div class="cheatsheet-section-copy">
@@ -533,10 +564,59 @@
             </div>
         </section>
 
-        <div class="cheatsheet-footer-note">
-            This first release is intentionally focused on common operational commands. If you want a second pass, the
-            next useful additions would be Terraform, Helm, AWS CLI, and a copy-to-clipboard interaction per command.
+        <section id="terraform-plan" class="cheatsheet-section cheatsheet-section-compact">
+            <div class="cheatsheet-section-head">
+                <div class="cheatsheet-section-copy">
+                    <span class="cheatsheet-kicker">Terraform Plan</span>
+                    <h2 class="section-title !text-left !mb-3">Next commands to add</h2>
+                    <p class="text-primary-text leading-relaxed">
+                        Terraform is the next logical addition. The plan is to keep it task-based like the existing
+                        sections so it stays useful without turning the page into another long scroll.
+                    </p>
+                </div>
+                <div class="cheatsheet-section-meta">
+                    <span class="text-accent font-semibold">Planned groups</span>
+                    <span>Setup, plan/apply cycle, state inspection, outputs, workspaces, and safe targeting notes.</span>
+                </div>
+            </div>
+
+            <div class="cheatsheet-plan-grid">
+                <article class="cheat-card reveal">
+                    <h3 class="cheat-card-title">Core Workflow</h3>
+                    <p class="cheat-card-copy">High-frequency commands for initializing, formatting, validating, and planning.</p>
+                    <div class="cheat-list">
+                        <div class="cheat-item"><code class="cheat-command">terraform init</code><p class="cheat-description">Initialize providers and backend configuration.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">terraform fmt</code><p class="cheat-description">Normalize formatting before review or commit.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">terraform validate</code><p class="cheat-description">Check configuration correctness before planning.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">terraform plan</code><p class="cheat-description">Preview infrastructure changes before apply.</p></div>
+                    </div>
+                </article>
+
+                <article class="cheat-card reveal">
+                    <h3 class="cheat-card-title">State and Environment</h3>
+                    <p class="cheat-card-copy">Commands that usually need context and caution notes to avoid drift or surprises.</p>
+                    <div class="cheat-list">
+                        <div class="cheat-item"><code class="cheat-command">terraform apply</code><p class="cheat-description">Apply the planned change set to real infrastructure.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">terraform output</code><p class="cheat-description">Read exported values from the current state.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">terraform state list</code><p class="cheat-description">Inspect tracked resources inside state.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">terraform workspace list</code><p class="cheat-description">See which logical environments exist.</p></div>
+                    </div>
+                </article>
+            </div>
+        </section>
+            </div>
         </div>
+
+        <footer class="cheatsheet-footer">
+            <div class="cheatsheet-footer-inner">
+                <p class="cheatsheet-footer-title">Cheatsheet</p>
+                <p class="cheatsheet-footer-copy">
+                    Built as a fast operational reference. Current sections cover Linux + Git, Docker, and Kubernetes.
+                    Terraform is planned next in the same grouped format.
+                </p>
+                <a href="#top" class="cheatsheet-footer-link">Back to top</a>
+            </div>
+        </footer>
     </main>
 
     <script src="js/navigation.js"></script>

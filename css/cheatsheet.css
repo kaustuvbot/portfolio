@@ -5,6 +5,74 @@
     padding-bottom: 5rem;
 }
 
+.cheatsheet-shell {
+    display: grid;
+    grid-template-columns: 17rem minmax(0, 1fr);
+    gap: 2rem;
+    align-items: start;
+}
+
+.cheatsheet-content {
+    min-width: 0;
+}
+
+.cheatsheet-sidebar {
+    position: sticky;
+    top: 6.75rem;
+    display: grid;
+    gap: 1rem;
+}
+
+.cheatsheet-sidebar-panel {
+    padding: 1.1rem;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 16%, var(--color-border));
+    border-radius: 1.2rem;
+    background: color-mix(in srgb, var(--color-surface) 92%, transparent);
+    box-shadow: 0 14px 38px rgba(0, 0, 0, 0.18);
+}
+
+.cheatsheet-sidebar-title {
+    margin-bottom: 0.8rem;
+    color: var(--color-heading);
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.cheatsheet-sidebar-nav {
+    display: grid;
+    gap: 0.55rem;
+}
+
+.cheatsheet-sidebar-link {
+    display: block;
+    padding: 0.75rem 0.85rem;
+    border: 1px solid color-mix(in srgb, var(--color-border) 80%, transparent);
+    border-radius: 0.95rem;
+    background: color-mix(in srgb, var(--color-background) 24%, var(--color-surface));
+    color: var(--color-primary-text);
+    transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.cheatsheet-sidebar-link:hover {
+    transform: translateX(2px);
+    border-color: color-mix(in srgb, var(--color-accent) 35%, var(--color-border));
+    color: var(--color-accent);
+}
+
+.cheatsheet-sidebar-copy {
+    color: var(--color-secondary-text);
+    line-height: 1.7;
+}
+
+.cheatsheet-sidebar-list {
+    margin-top: 0.85rem;
+    padding-left: 1rem;
+    color: var(--color-primary-text);
+    line-height: 1.8;
+}
+
 .cheatsheet-hero {
     position: relative;
     padding: 2rem 0 3rem;
@@ -182,6 +250,10 @@
     padding: 2rem 0 1rem;
 }
 
+.cheatsheet-section-compact {
+    padding-bottom: 0;
+}
+
 .cheatsheet-section-head {
     display: flex;
     flex-wrap: wrap;
@@ -217,6 +289,12 @@
 }
 
 .cheatsheet-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+}
+
+.cheatsheet-plan-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.5rem;
@@ -308,20 +386,51 @@
     color: var(--color-accent);
 }
 
-.cheatsheet-footer-note {
-    margin-top: 3rem;
-    padding: 1.25rem 1.4rem;
-    border: 1px solid color-mix(in srgb, var(--color-accent) 18%, var(--color-border));
-    border-radius: 1rem;
-    background: color-mix(in srgb, var(--color-surface) 90%, transparent);
+.cheatsheet-footer {
+    margin-top: 2.5rem;
+}
+
+.cheatsheet-footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem 1.2rem;
+    border-top: 1px solid color-mix(in srgb, var(--color-accent) 18%, var(--color-border));
     color: var(--color-secondary-text);
+}
+
+.cheatsheet-footer-title {
+    color: var(--color-heading);
+    font-weight: 700;
+}
+
+.cheatsheet-footer-copy {
+    flex: 1 1 28rem;
     line-height: 1.7;
+}
+
+.cheatsheet-footer-link {
+    color: var(--color-accent);
+    font-weight: 600;
+}
+
+.cheatsheet-footer-link:hover {
+    color: var(--color-accent-hover);
 }
 
 @media (max-width: 1024px) {
     .cheatsheet-hero-grid,
-    .cheatsheet-grid {
+    .cheatsheet-shell,
+    .cheatsheet-grid,
+    .cheatsheet-plan-grid {
         grid-template-columns: 1fr;
+    }
+
+    .cheatsheet-sidebar {
+        position: static;
+        order: -1;
     }
 }
 
@@ -344,6 +453,10 @@
 
     .cheatsheet-chip {
         width: 100%;
+    }
+
+    .cheatsheet-sidebar-link {
+        padding: 0.7rem 0.8rem;
     }
 
     .cheatsheet-section-meta {
