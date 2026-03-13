@@ -74,7 +74,7 @@
                     <li><a href="#linux-git" class="hover:text-accent transition-colors">Linux + Git</a></li>
                     <li><a href="#docker" class="hover:text-accent transition-colors">Docker</a></li>
                     <li><a href="#kubernetes" class="hover:text-accent transition-colors">Kubernetes</a></li>
-                    <li><a href="#terraform-plan" class="hover:text-accent transition-colors">Terraform Plan</a></li>
+                    <li><a href="#terraform-plan" class="hover:text-accent transition-colors">Terraform</a></li>
                     <li><a href="index.html#contact" class="hover:text-accent transition-colors">Contact</a></li>
                 </ul>
                 <div class="flex items-center gap-3">
@@ -117,7 +117,7 @@
                 <li><a href="#linux-git" class="hover:text-accent transition-colors">Linux + Git</a></li>
                 <li><a href="#docker" class="hover:text-accent transition-colors">Docker</a></li>
                 <li><a href="#kubernetes" class="hover:text-accent transition-colors">Kubernetes</a></li>
-                <li><a href="#terraform-plan" class="hover:text-accent transition-colors">Terraform Plan</a></li>
+                <li><a href="#terraform-plan" class="hover:text-accent transition-colors">Terraform</a></li>
                 <li><a href="index.html#contact" class="hover:text-accent transition-colors">Contact</a></li>
             </ul>
         </div>
@@ -130,19 +130,19 @@
                     <span class="cheatsheet-badge">Command Reference</span>
                     <h1 class="text-4xl md:text-6xl font-bold text-heading mt-5 mb-5">Cheatsheet</h1>
                     <p class="cheatsheet-lead">
-                        A categorized quick-reference page for Linux, Git, Docker, Kubernetes, and upcoming Terraform
+                        A categorized quick-reference page for Linux, Git, Docker, Kubernetes, and Terraform
                         commands, designed for fast scanning during real DevOps work.
                     </p>
                     <div class="cheatsheet-quicknav">
                         <a href="#linux-git" class="cheatsheet-chip">Linux + Git</a>
                         <a href="#docker" class="cheatsheet-chip">Docker</a>
                         <a href="#kubernetes" class="cheatsheet-chip">Kubernetes</a>
-                        <a href="#terraform-plan" class="cheatsheet-chip">Terraform Plan</a>
+                        <a href="#terraform-plan" class="cheatsheet-chip">Terraform</a>
                     </div>
                 </div>
                 <div class="cheatsheet-stat-grid slide-up">
                     <div class="cheatsheet-stat">
-                        <span class="cheatsheet-stat-value">3</span>
+                        <span class="cheatsheet-stat-value">4</span>
                         <span class="cheatsheet-stat-label">tool families grouped by workflow</span>
                     </div>
                     <div class="cheatsheet-stat">
@@ -166,20 +166,20 @@
                         <a href="#linux-git" class="cheatsheet-sidebar-link">Linux + Git</a>
                         <a href="#docker" class="cheatsheet-sidebar-link">Docker</a>
                         <a href="#kubernetes" class="cheatsheet-sidebar-link">Kubernetes</a>
-                        <a href="#terraform-plan" class="cheatsheet-sidebar-link">Terraform Plan</a>
+                        <a href="#terraform-plan" class="cheatsheet-sidebar-link">Terraform</a>
                     </nav>
                 </div>
 
                 <div class="cheatsheet-sidebar-panel">
-                    <p class="cheatsheet-sidebar-title">Terraform Next</p>
+                    <p class="cheatsheet-sidebar-title">Terraform Coverage</p>
                     <p class="cheatsheet-sidebar-copy">
-                        Planned next as a compact section, not another long wall of commands.
+                        Included as a task-based section covering init, plan/apply, state, workspaces, and imports.
                     </p>
                     <ul class="cheatsheet-sidebar-list">
                         <li>`init`, `validate`, `fmt`</li>
                         <li>`plan`, `apply`, `destroy`</li>
-                        <li>state and output commands</li>
-                        <li>workspace and targeting notes</li>
+                        <li>variables, outputs, and workspaces</li>
+                        <li>state, import, and targeting cautions</li>
                     </ul>
                 </div>
             </aside>
@@ -566,39 +566,106 @@
         <section id="terraform-plan" class="cheatsheet-section cheatsheet-section-compact">
             <div class="cheatsheet-section-head">
                 <div class="cheatsheet-section-copy">
-                    <span class="cheatsheet-kicker">Terraform Plan</span>
-                    <h2 class="section-title !text-left !mb-3">Next commands to add</h2>
+                    <span class="cheatsheet-kicker">Terraform</span>
+                    <h2 class="section-title !text-left !mb-3">Provisioning, planning, state, and workspace workflows</h2>
                     <p class="text-primary-text leading-relaxed">
-                        Terraform is the next logical addition. The plan is to keep it task-based like the existing
-                        sections so it stays useful without turning the page into another long scroll.
+                        This section covers the common Terraform commands used for initialization, validation, planning,
+                        apply/destroy flow, state inspection, workspaces, and controlled imports or targeting.
                     </p>
                 </div>
                 <div class="cheatsheet-section-meta">
-                    <span class="text-accent font-semibold">Planned groups</span>
-                    <span>Setup, plan/apply cycle, state inspection, outputs, workspaces, and safe targeting notes.</span>
+                    <span class="text-accent font-semibold">Focus</span>
+                    <span>Init, plan/apply, variables, outputs, state, workspaces, imports, and safe targeting notes.</span>
                 </div>
             </div>
 
             <div class="cheatsheet-plan-grid">
                 <article class="cheat-card reveal">
-                    <h3 class="cheat-card-title">Core Workflow</h3>
-                    <p class="cheat-card-copy">High-frequency commands for initializing, formatting, validating, and planning.</p>
+                    <h3 class="cheat-card-title">Init, Format, and Validate</h3>
+                    <p class="cheat-card-copy">Bootstrap a working directory and catch syntax or formatting issues early.</p>
                     <div class="cheat-list">
                         <div class="cheat-item"><code class="cheat-command">terraform init</code><p class="cheat-description">Initialize providers and backend configuration.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">terraform init -upgrade</code><p class="cheat-description">Upgrade provider selections to newer acceptable versions.</p></div>
                         <div class="cheat-item"><code class="cheat-command">terraform fmt</code><p class="cheat-description">Normalize formatting before review or commit.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">terraform fmt -recursive</code><p class="cheat-description">Format Terraform files recursively under the current directory.</p></div>
                         <div class="cheat-item"><code class="cheat-command">terraform validate</code><p class="cheat-description">Check configuration correctness before planning.</p></div>
-                        <div class="cheat-item"><code class="cheat-command">terraform plan</code><p class="cheat-description">Preview infrastructure changes before apply.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">terraform providers</code><p class="cheat-description">Show which providers the current configuration depends on.</p></div>
                     </div>
                 </article>
 
                 <article class="cheat-card reveal">
-                    <h3 class="cheat-card-title">State and Environment</h3>
-                    <p class="cheat-card-copy">Commands that usually need context and caution notes to avoid drift or surprises.</p>
+                    <h3 class="cheat-card-title">Plan and Apply</h3>
+                    <p class="cheat-card-copy">Preview changes, save plans when needed, and apply them deliberately.</p>
                     <div class="cheat-list">
-                        <div class="cheat-item"><code class="cheat-command">terraform apply</code><p class="cheat-description">Apply the planned change set to real infrastructure.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">terraform plan</code><p class="cheat-description">Preview infrastructure changes before apply.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">terraform plan -out=tfplan</code><p class="cheat-description">Save a plan file for later controlled apply.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">terraform apply</code><p class="cheat-description">Apply the current change set interactively.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">terraform apply tfplan</code><p class="cheat-description">Apply a previously saved plan file.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">terraform apply -auto-approve</code><p class="cheat-description">Apply without an interactive approval prompt.</p><p class="cheat-note"><strong>Caution:</strong> use this only in controlled automation or well-understood workflows.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">terraform destroy</code><p class="cheat-description">Destroy all managed resources in the current workspace.</p><p class="cheat-note"><strong>Destructive:</strong> review the plan carefully before confirming destroy.</p></div>
+                    </div>
+                </article>
+
+                <article class="cheat-card reveal">
+                    <h3 class="cheat-card-title">Variables and Outputs</h3>
+                    <p class="cheat-card-copy">Inject environment-specific values and read useful outputs from state.</p>
+                    <div class="cheat-list">
+                        <div class="cheat-item"><code class="cheat-command">terraform plan -var="region=eu-west-2"</code><p class="cheat-description">Pass a single variable value at runtime.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">terraform plan -var-file="prod.tfvars"</code><p class="cheat-description">Load variables from a tfvars file.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">export TF_VAR_environment=prod</code><p class="cheat-description">Set an environment variable consumed as a Terraform input variable.</p></div>
                         <div class="cheat-item"><code class="cheat-command">terraform output</code><p class="cheat-description">Read exported values from the current state.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">terraform output vpc_id</code><p class="cheat-description">Read one named output value.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">terraform output -json</code><p class="cheat-description">Emit outputs in JSON for scripting or pipeline use.</p></div>
+                    </div>
+                </article>
+
+                <article class="cheat-card reveal">
+                    <h3 class="cheat-card-title">State and Workspace</h3>
+                    <p class="cheat-card-copy">Inspect tracked resources and switch between logical environments safely.</p>
+                    <div class="cheat-list">
                         <div class="cheat-item"><code class="cheat-command">terraform state list</code><p class="cheat-description">Inspect tracked resources inside state.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">terraform state show aws_instance.web</code><p class="cheat-description">Inspect one resource as Terraform sees it in state.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">terraform state pull</code><p class="cheat-description">Print the current state snapshot from the backend.</p></div>
                         <div class="cheat-item"><code class="cheat-command">terraform workspace list</code><p class="cheat-description">See which logical environments exist.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">terraform workspace select prod</code><p class="cheat-description">Switch to an existing workspace.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">terraform workspace new staging</code><p class="cheat-description">Create and switch to a new workspace.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">terraform workspace show</code><p class="cheat-description">Print the active workspace name.</p></div>
+                    </div>
+                </article>
+
+                <article class="cheat-card reveal">
+                    <h3 class="cheat-card-title">Import and Targeting</h3>
+                    <p class="cheat-card-copy">Handle existing resources and narrow operations only when there is a clear operational reason.</p>
+                    <div class="cheat-list">
+                        <div class="cheat-item"><code class="cheat-command">terraform import aws_s3_bucket.logs my-logs-bucket</code><p class="cheat-description">Import an existing real resource into Terraform state.</p><p class="cheat-note"><strong>Persistence:</strong> import only links state; you still need matching configuration in code.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">terraform plan -target=aws_instance.web</code><p class="cheat-description">Limit planning to one target resource or module path.</p><p class="cheat-note"><strong>Caution:</strong> targeting is useful for recovery or debugging, but can hide wider dependency effects.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">terraform apply -target=module.network</code><p class="cheat-description">Apply only a targeted part of the graph.</p><p class="cheat-note"><strong>Caution:</strong> avoid using targeting as the default workflow for normal changes.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">terraform state mv module.old.aws_s3_bucket.logs module.new.aws_s3_bucket.logs</code><p class="cheat-description">Move a resource address inside state after refactors.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">terraform state rm aws_instance.legacy</code><p class="cheat-description">Remove a resource from state without deleting the real infrastructure.</p><p class="cheat-note"><strong>Caution:</strong> Terraform will stop managing that object until it is imported again.</p></div>
+                    </div>
+                </article>
+
+                <article class="cheat-card reveal">
+                    <h3 class="cheat-card-title">Console and Troubleshooting</h3>
+                    <p class="cheat-card-copy">Debug expressions, inspect provider schemas, and understand what Terraform will do.</p>
+                    <div class="cheat-list">
+                        <div class="cheat-item"><code class="cheat-command">terraform console</code><p class="cheat-description">Evaluate Terraform expressions interactively.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">terraform graph</code><p class="cheat-description">Generate a dependency graph of resources and modules.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">terraform show</code><p class="cheat-description">Display the current state or a saved plan in human-readable form.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">terraform show -json tfplan</code><p class="cheat-description">Emit a saved plan as JSON for tooling or policy checks.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">TF_LOG=INFO terraform plan</code><p class="cheat-description">Enable Terraform logging for debugging plan behavior.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">terraform providers schema -json</code><p class="cheat-description">Inspect provider schemas in JSON when building tools or debugging resource fields.</p></div>
+                    </div>
+                </article>
+
+                <article class="cheat-card reveal">
+                    <h3 class="cheat-card-title">Safe Cleanup</h3>
+                    <p class="cheat-card-copy">Use cleanup commands carefully when local working state or plans need to be discarded.</p>
+                    <div class="cheat-list">
+                        <div class="cheat-item"><code class="cheat-command">rm -rf .terraform .terraform.lock.hcl</code><p class="cheat-description">Reset local provider/plugin initialization files and lock file.</p><p class="cheat-note"><strong>Use with care:</strong> this is a local cleanup step and should be followed by `terraform init`.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">terraform destroy -target=aws_instance.web</code><p class="cheat-description">Destroy only a targeted resource.</p><p class="cheat-note"><strong>Caution:</strong> targeted destroy can leave related infrastructure in a surprising state.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">terraform force-unlock LOCK_ID</code><p class="cheat-description">Remove a stale state lock when you are certain no active run still holds it.</p><p class="cheat-note"><strong>Danger:</strong> verify the lock is truly stale before forcing unlock.</p></div>
+                        <div class="cheat-item"><code class="cheat-command">terraform workspace delete staging</code><p class="cheat-description">Delete an unused workspace after resources and state are no longer needed.</p></div>
                     </div>
                 </article>
             </div>
