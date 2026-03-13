@@ -343,13 +343,18 @@
 .cheat-list {
     display: grid;
     gap: 0.9rem;
+    min-width: 0;
 }
 
 .cheat-item {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
     padding: 0.9rem 1rem;
     border-radius: 0.95rem;
     border: 1px solid color-mix(in srgb, var(--color-border) 75%, transparent);
     background: color-mix(in srgb, var(--color-surface) 88%, transparent);
+    overflow: hidden;
 }
 
 .cheat-item-imperative {
@@ -381,12 +386,14 @@
 
 .cheat-command {
     display: block;
-    overflow-x: auto;
+    max-width: 100%;
     margin-bottom: 0.4rem;
     color: var(--color-accent-soft);
     font-size: 0.92rem;
     line-height: 1.6;
-    white-space: nowrap;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 .cheat-description {
@@ -468,8 +475,4 @@
         padding: 1.1rem;
     }
 
-    .cheat-command {
-        white-space: pre-wrap;
-        word-break: break-word;
-    }
 }
