@@ -7,8 +7,66 @@
     const cards = Array.from(document.querySelectorAll('.cheat-card'));
     const sections = Array.from(document.querySelectorAll('.cheatsheet-section'));
     let lastQuery = '';
+    const termAliases = {
+        deploy: ['deployment', 'deployments', 'rollout', 'rollouts', 'replicaset'],
+        deployment: ['deploy', 'deployments', 'rollout', 'rollouts', 'replicaset'],
+        deployments: ['deploy', 'deployment', 'rollout', 'rollouts', 'replicaset'],
+        deployement: ['deploy', 'deployment', 'deployments', 'rollout', 'rollouts', 'replicaset'],
+        rollout: ['deployment', 'deployments', 'deploy', 'replicaset'],
+        rollouts: ['deployment', 'deployments', 'deploy', 'replicaset'],
+        pod: ['pods', 'container', 'containers'],
+        pods: ['pod', 'container', 'containers'],
+        image: ['images', 'tag', 'registry', 'docker'],
+        images: ['image', 'tag', 'registry', 'docker'],
+        service: ['services', 'svc', 'ingress', 'endpoint'],
+        services: ['service', 'svc', 'ingress', 'endpoint'],
+        svc: ['service', 'services'],
+        namespace: ['namespaces', 'ns'],
+        namespaces: ['namespace', 'ns'],
+        ns: ['namespace', 'namespaces'],
+        config: ['configmap', 'configmaps', 'secret', 'secrets'],
+        configmap: ['config', 'configmaps'],
+        configmaps: ['config', 'configmap'],
+        secret: ['secrets', 'config'],
+        secrets: ['secret', 'config'],
+        compose: ['docker', 'container', 'containers'],
+        container: ['containers', 'docker', 'pod', 'pods'],
+        containers: ['container', 'docker', 'pod', 'pods'],
+        branch: ['branches', 'git', 'switch', 'checkout'],
+        branches: ['branch', 'git', 'switch', 'checkout'],
+        commit: ['commits', 'git', 'staging', 'history'],
+        commits: ['commit', 'git', 'staging', 'history'],
+        log: ['logs', 'history'],
+        logs: ['log', 'history'],
+        volume: ['volumes', 'storage'],
+        volumes: ['volume', 'storage'],
+    };
 
     if (!searchInput || !cards.length || !sections.length) return;
+
+    function normalizeText(value) {
+        return value
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, ' ')
+            .trim();
+    }
+
+    function expandToken(token) {
+        const variants = new Set([token]);
+
+        if (token.endsWith('s') && token.length > 3) {
+            variants.add(token.slice(0, -1));
+        } else if (token.length > 3) {
+            variants.add(`${token}s`);
+        }
+
+        (termAliases[token] || []).forEach((alias) => variants.add(alias));
+        return Array.from(variants);
+    }
+
+    function tokenize(value) {
+        return normalizeText(value).split(/\s+/).filter(Boolean);
+    }
 
     const cardIndexes = cards.map((card) => {
         const section = card.closest('.cheatsheet-section');
@@ -25,9 +83,18 @@
                 item.querySelector('.cheat-command')?.textContent || '',
                 item.querySelector('.cheat-description')?.textContent || '',
                 item.querySelector('.cheat-note')?.textContent || '',
-            ].join(' ').toLowerCase();
+            ].join(' ');
+            const tokens = tokenize(itemText);
+            const expandedTokens = new Set(tokens);
+            tokens.forEach((token) => {
+                expandToken(token).forEach((variant) => expandedTokens.add(variant));
+            });
 
-            return { element: item, text: itemText };
+            return {
+                element: item,
+                text: normalizeText(itemText),
+                tokens: Array.from(expandedTokens),
+            };
         });
 
         return { element: card, section, items };
@@ -76,14 +143,19 @@
     }
 
     function applySearch(rawQuery) {
-        const query = rawQuery.trim().toLowerCase();
+        const query = normalizeText(rawQuery);
+        const queryTokens = tokenize(rawQuery).map((token) => expandToken(token));
         let visibleItems = 0;
 
         cardIndexes.forEach(({ element, items }) => {
             let cardHasVisibleItems = false;
 
-            items.forEach(({ element: item, text }) => {
-                const matches = !query || text.includes(query);
+            items.forEach(({ element: item, text, tokens }) => {
+                const matches = !query || queryTokens.every((tokenGroup) =>
+                    tokenGroup.some((token) =>
+                        text.includes(token) || tokens.some((itemToken) => itemToken.includes(token))
+                    )
+                );
                 item.hidden = !matches;
                 if (matches) {
                     cardHasVisibleItems = true;
