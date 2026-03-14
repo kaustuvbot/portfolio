@@ -7,11 +7,12 @@ function initForm() {
         const btn = document.getElementById('submit-btn');
         const status = document.getElementById('form-status');
         const defaultText = btn ? btn.innerHTML : '';
+        const endpoint = contactForm.dataset.endpoint;
 
         contactForm.addEventListener('submit', async (event) => {
             event.preventDefault();
 
-            if (!btn) return;
+            if (!btn || !endpoint) return;
 
             btn.innerHTML = 'Sending...';
             btn.disabled = true;
@@ -25,7 +26,7 @@ function initForm() {
             const formData = new FormData(contactForm);
 
             try {
-                const response = await fetch(contactForm.action, {
+                const response = await fetch(endpoint, {
                     method: 'POST',
                     headers: {
                         Accept: 'application/json',
